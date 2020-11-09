@@ -3,39 +3,19 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\jenispaket;
 use App\transaksi;
-use DB;
 
-class rekapcontroller extends Controller
+class pesanlaundryController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-
-     public function index()
-     {
-       $transaksi = DB::table('transaksi')
-                    ->join('users', 'users.id', '=', 'transaksi.id_users')
-                    ->join('jenis_paket', 'jenis_paket.id_paket', '=', 'transaksi.id_paket')
-                    ->select('users.name','transaksi.jumlah_pembayaran', 'transaksi.berat_pakaian', 'jenis_paket.nama_paket', 'transaksi.created_at')
-                    ->get();
-                    return view('rekaptransaksi', compact('transaksi'));
-     }
-    public function rekap(Request $request)
+    public function index()
     {
-      $tgl1 = $request->tglawal;
-      $tgl2 = $request->tglakhir;
-        $transaksi = DB::table('transaksi')
-                    ->join('users', 'users.id', '=', 'transaksi.id_users')
-                    ->join('jenis_paket', 'jenis_paket.id_paket', '=', 'transaksi.id_paket')
-                    ->select('users.name','transaksi.jumlah_pembayaran', 'transaksi.berat_pakaian', 'jenis_paket.nama_paket', 'transaksi.created_at')
-                    ->whereDate('transaksi.created_at', '>=' , $tgl1)
-                    ->whereDate('transaksi.created_at', '<=' , $tgl2)
-                    ->get();
-                    return view('rekaptransaksi', compact('transaksi'));
-
+        //
     }
 
     /**
@@ -45,7 +25,8 @@ class rekapcontroller extends Controller
      */
     public function create()
     {
-        //
+        $paket = \App\jenispaket::all();
+        return view('pelanggan.pesanlaundry', compact('paket'));
     }
 
     /**
@@ -56,7 +37,8 @@ class rekapcontroller extends Controller
      */
     public function store(Request $request)
     {
-        //
+      transaksi::create($request->all());
+      return redirect('/laundrysekarang')->with('status', 'Transaksi Baru Ditampilkan');
     }
 
     /**

@@ -1,6 +1,6 @@
 @extends('layout.layout')
 @section('namamenu', 'Transaksi')
-@section('title','Tambah Transaksi')
+@section('title','Pesan Laundry')
 
 @section('content')
 <!-- Button trigger modal -->
@@ -27,41 +27,37 @@
   </div>
 </div>
 @endif
-<form method="post" action="/transaksi">
+<form method="post" action="/laundrysekarang">
   @csrf
   <div class="form-group">
-    <label for="idusers">ID Pelanggan</label>
-    <select name="id_users" class="form-control form-control-lg">
-      @foreach($user as $usr)
-        <option value="{{$usr->id}}">{{$usr->id}}</option>
+    <label for="jenispaket">Jenis Paket</label>
+    <select name="id_paket" class="form-control form-control-lg">
+      @foreach($paket as $pkt)
+        <option value="{{$pkt->id_paket}}">{{$pkt->nama_paket}}</option>
       @endforeach
     </select>
-</div>
-    <div class="form-group">
-    <div class="row">
-      <div class="col s12">
-        <div class="row">
-          <div class="input-field col s12">
-            <label for="jenispaket">Jenis Paket</label>
-            <input type="text" id="jenispaket" name="jenispaket" autocomplete="off" class="form-control" placeholder="Masukkan Jenis Paket">
-          </div>
-        </div>
-      </div>
-    </div>
+  </div>
+  <div class="form-group">
+    <label for="alamat">Alamat</label>
+    <input type="text" class="form-control" id="alamat" value="{{auth()->user()->alamat}}" name="alamat" placeholder="Masukkan Berat Pakaian">
+  </div>
+  <div class="form-group">
+    <input type="hidden" class="form-control" id="id_users" value="{{auth()->user()->id}}" name="id_users" placeholder="">
   </div>
     <div class="form-group">
-      <label for="berat_pakaian">Berat Pakaian</label>
-      <input type="number" class="form-control" id="berat_pakaian" name="berat_pakaian" placeholder="Masukkan Berat Pakaian">
+      <input type="hidden" class="form-control" id="berat_pakaian" value="0" name="berat_pakaian" placeholder="Masukkan Berat Pakaian">
     </div>
     <div class="form-group">
-      <input type="hidden" value="" class="form-control" id="harga" name="harga" placeholder="Masukkan Harga Satuan"  readonly="">
+      <input type="hidden" value="" class="form-control" id="harga" value="0" name="harga" placeholder="Masukkan Harga Satuan"  readonly="">
     </div>
     <div class="form-group">
-      <input type="hidden" class="form-control" id="id_paket" name="id_paket" placeholder="Masukkan Jumlah (Kg)">
+      <input type="hidden" value="online" class="form-control" id="jenistransaksi" value="0" name="jenistransaksi" placeholder="Masukkan Harga Satuan"  readonly="">
     </div>
     <div class="form-group">
-      <label for="jumlah_pembayaran">Jumlah Pembayaran</label>
-      <input type="text" value="" class="form-control" id="jumlah_pembayaran" name="jumlah_pembayaran" placeholder="Masukkan harga dalam" readonly="">
+      <input type="hidden" class="form-control" id="status" value="Belum terverifikasi" name="status" readonly="">
+    </div>
+    <div class="form-group">
+      <input type="hidden" value="0" class="form-control" id="jumlah_pembayaran" name="jumlah_pembayaran" placeholder="Masukkan harga dalam" readonly="">
     </div>
     <button type="submit" class="btn btn-primary">Simpan</button>
   </form>

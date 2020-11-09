@@ -1,6 +1,6 @@
 @extends('layout.layout')
 @section('namamenu', 'Transaksi')
-@section('title','Tambah Transaksi')
+@section('title','Verifikasi Transaksi')
 
 @section('content')
 <!-- Button trigger modal -->
@@ -27,42 +27,48 @@
   </div>
 </div>
 @endif
-<form method="post" action="/transaksi">
+@foreach($transaksi as $tr)
+<form method="post" action="/antarjemput/{{$tr->id_transaksi}}">
   @csrf
+  @method('put')
   <div class="form-group">
-    <label for="idusers">ID Pelanggan</label>
-    <select name="id_users" class="form-control form-control-lg">
-      @foreach($user as $usr)
-        <option value="{{$usr->id}}">{{$usr->id}}</option>
-      @endforeach
-    </select>
-</div>
-    <div class="form-group">
-    <div class="row">
-      <div class="col s12">
-        <div class="row">
-          <div class="input-field col s12">
-            <label for="jenispaket">Jenis Paket</label>
-            <input type="text" id="jenispaket" name="jenispaket" autocomplete="off" class="form-control" placeholder="Masukkan Jenis Paket">
-          </div>
-        </div>
-      </div>
-    </div>
+    <label for="name">Nama :</label>
+    <input type="text" class="form-control" id="name" value="{{$tr->name}}" name="name" readonly="">
+  </div>
+  <div class="form-group">
+    <label for="alamat">Alamat :</label>
+    <input type="text" class="form-control" id="alamat" value="{{$tr->alamat}}" name="alamat" readonly="">
+  </div>
+  <div class="form-group">
+    <label for="nama_paket">Jenis Paket :</label>
+    <input type="text" class="form-control" id="nama_paket" value="{{$tr->nama_paket}}" name="nama_paket" readonly="">
+  </div>
+  <div class="form-group">
+    <label for="created_at">Tanggal Transaksi :</label>
+    <input type="text" class="form-control" id="created_at" value="{{$tr->created_at}}" name="created_at" readonly="">
+  </div>
+  <div class="form-group">
+    <label for="berat_pakaian">Berat Pakaian :</label>
+    <input type="number" class="form-control" id="berat_pakaian" value="" name="berat_pakaian" placeholder="masukkan berat pakaian">
+  </div>
+  <div class="form-group">
+    <label for="jumlah_pembayaran">Jumlah Pembayaran :</label>
+    <input type="number" class="form-control" id="jumlah_pembayaran" value="" name="jumlah_pembayaran">
   </div>
     <div class="form-group">
-      <label for="berat_pakaian">Berat Pakaian</label>
-      <input type="number" class="form-control" id="berat_pakaian" name="berat_pakaian" placeholder="Masukkan Berat Pakaian">
-    </div>
-    <div class="form-group">
-      <input type="hidden" value="" class="form-control" id="harga" name="harga" placeholder="Masukkan Harga Satuan"  readonly="">
+      <input type="hidden" value="{{$tr->harga}}" class="form-control" id="harga" name="harga" placeholder="Masukkan Harga Satuan"  readonly="">
     </div>
     <div class="form-group">
       <input type="hidden" class="form-control" id="id_paket" name="id_paket" placeholder="Masukkan Jumlah (Kg)">
     </div>
-    <div class="form-group">
-      <label for="jumlah_pembayaran">Jumlah Pembayaran</label>
-      <input type="text" value="" class="form-control" id="jumlah_pembayaran" name="jumlah_pembayaran" placeholder="Masukkan harga dalam" readonly="">
+    <div class="form-check">
+      <input class="form-check-input" type="checkbox" value="Terverifikasi" name="status" id="status">
+      <label class="form-check-label" for="status">
+        Setujui Pesanan
+      </label>
     </div>
+    <br>
+    @endforeach
     <button type="submit" class="btn btn-primary">Simpan</button>
   </form>
   <!-- Button trigger modal -->

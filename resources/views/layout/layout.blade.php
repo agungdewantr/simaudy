@@ -195,11 +195,11 @@
             @if(auth()->user()->id_role == '3')
             <li><a class="nav-link" href="/transaksi"><i class="fas fa-th-large"></i>Transaksi</a></li>
             <li><a class="nav-link" href="/tentangkami"><i class="fas fa-th-large"></i>Tentang Kami</a></li>
-            <li><a class="nav-link" href="index-0.html"><i class="fas fa-th-large"></i>Antar Jemput</a></li>
+            <li><a class="nav-link" href="/antarjemput"><i class="fas fa-th-large"></i>Antar Jemput</a></li>
             @endif
 
             @if(auth()->user()->id_role == '4')
-            <li><a class="nav-link" href="index-0.html"><i class="fas fa-th-large"></i>Laundry Sekarang</a></li>
+            <li><a class="nav-link" href="/laundrysekarang"><i class="fas fa-th-large"></i>Laundry Sekarang</a></li>
 
             @endif
 

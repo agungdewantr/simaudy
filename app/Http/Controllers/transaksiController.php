@@ -34,7 +34,7 @@ class transaksiController extends Controller
      */
     public function create()
     {
-        $user = \App\user::all();
+        $user = DB::table('users')->where('id_role', '=' ,4)->get();
         return view('transaksi.transaksi-tambah', compact('user'));
     }
 
@@ -53,7 +53,7 @@ class transaksiController extends Controller
     public function store(Request $request)
     {
       transaksi::create($request->all());
-      return redirect('/transaksi')->with('status','Transaksi baru Berhasil Ditambah');
+      return redirect('/transaksi')->with('status', 'Transaksi Baru Ditampilkan');
     }
 
     /**

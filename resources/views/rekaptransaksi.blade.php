@@ -3,9 +3,12 @@
 @section('title','Data Transaksi')
 
 @section('content')
-<form class="form-inline mr-auto" method="get" action="/rekaptransaksi">
+<form class="form-inline mr-auto" method="get" action="/rekaptransaksi/cari">
   <div class="search-element">
-    <input name="cari" class="shadow-sm p-3 mb-0 bg-white rounded form-control" type="search" placeholder="transaksi berdasarkan bulan atau tahun" aria-label="Search" data-width="260" data-height="35">
+    <label for="tglawal" class="d-inline">Pilih Tanggal Awal :</label>
+    <input name="tglawal" id="tglawal" class="shadow-sm p-3 mb-0 bg-white rounded form-control" type="date" value="{{ date('Y-m-d') }}" placeholder="" aria-label="Search" data-width="260" data-height="35">
+    <label for="tglakhir" class="d-inline">Pilih Tanggal Akhir :</label>
+    <input name="tglakhir" id="tglakhir" class="shadow-sm p-3 mb-0 bg-white rounded form-control" type="date" value="{{ date('Y-m-d') }}" placeholder="" aria-label="Search" data-width="260" data-height="35">
     <button class="btn btn-primary" type="submit"><i class="fas fa-search"></i></button>
   </div>
 </form>

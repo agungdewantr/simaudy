@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Auth;
+use App\jenispaket;
 
 class HomeController extends Controller
 {
@@ -35,6 +36,7 @@ class HomeController extends Controller
 
     public function tentangkami()
     {
-      return view('tentangkami');
+      $jenispaket = \App\jenispaket::all();
+      return view('tentangkami', compact('jenispaket'));
     }
 }

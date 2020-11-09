@@ -15,22 +15,22 @@ Sejak 2006 hingga kini Simply Fresh telah berkembang menjadi perusahaan dengan [
   </div>
   <center>
   <div class="card-body">
-    <!-- <div class=""> -->
 
 
-
+    @foreach($jenispaket as $jp)
       <div class="col-12 col-md-6 col-lg-3">
         <div class="shadow p-3 mb-5 bg-white rounded">
         <div class="card text-center bg-info">
-          <div class="card-body">
-            <h5 class="card-title">Paket Express</h5
+          <div class="d-inline card-body">
+            <h5 class="card-title">{{$jp->nama_paket}}</h5
               <hr>
-            <p class="card-text"><b>Rp . 12000 / Kg</b></p>
-            <p class="card-text">Cuci + Seterika dalam waktu 1 hari</p>
+            <p class="card-text"><b>Rp. {{$jp->harga}} / Kg</b></p>
+            <p class="card-text">{{$jp->keterangan}}</p>
           </div>
         </div>
         </div>
       </div>
+      @endforeach
     <!-- </div> -->
   </div>
 </center>
