@@ -49,7 +49,10 @@
   </div>
   <div class="form-group">
     <label for="berat_pakaian">Berat Pakaian :</label>
-    <input type="number" class="form-control" id="berat_pakaian" value="" name="berat_pakaian" placeholder="masukkan berat pakaian">
+    <input type="number" class="form-control @error('berat_pakaian') is-invalid @enderror" id="berat_pakaian" value="" name="berat_pakaian" placeholder="masukkan berat pakaian">
+    @error('berat_pakaian')
+      <div class="invalid-feedback">{{$message}}</div>
+    @enderror
   </div>
   <div class="form-group">
     <label for="jumlah_pembayaran">Jumlah Pembayaran :</label>

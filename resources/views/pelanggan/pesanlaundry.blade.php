@@ -7,24 +7,11 @@
 
 <!-- Modal -->
 @if (session('status'))
-<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-        {{ session('status') }}
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Save changes</button>
-      </div>
-    </div>
-  </div>
+<div class="alert alert-warning alert-dismissible fade show" role="alert">
+  <strong>{{ session('status') }}</strong>
+  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+    <span aria-hidden="true">&times;</span>
+  </button>
 </div>
 @endif
 <form method="post" action="/laundrysekarang">
@@ -39,7 +26,10 @@
   </div>
   <div class="form-group">
     <label for="alamat">Alamat</label>
-    <input type="text" class="form-control" id="alamat" value="{{auth()->user()->alamat}}" name="alamat" placeholder="Masukkan Berat Pakaian">
+    <input type="text" class="form-control @error('alamat') is-invalid @enderror" id="alamat" value="{{auth()->user()->alamat}}" name="alamat" placeholder="Masukkan alamat">
+    @error('alamat')
+      <div class="invalid-feedback">{{$message}}</div>
+    @enderror
   </div>
   <div class="form-group">
     <input type="hidden" class="form-control" id="id_users" value="{{auth()->user()->id}}" name="id_users" placeholder="">
@@ -48,21 +38,45 @@
       <input type="hidden" class="form-control" id="berat_pakaian" value="0" name="berat_pakaian" placeholder="Masukkan Berat Pakaian">
     </div>
     <div class="form-group">
-      <input type="hidden" value="" class="form-control" id="harga" value="0" name="harga" placeholder="Masukkan Harga Satuan"  readonly="">
+      <input type="hidden" class="form-control" id="harga" value="0" name="harga" placeholder="Masukkan Harga Satuan"  readonly="">
     </div>
     <div class="form-group">
-      <input type="hidden" value="online" class="form-control" id="jenistransaksi" value="0" name="jenistransaksi" placeholder="Masukkan Harga Satuan"  readonly="">
+      <input type="hidden" value="online" class="form-control" id="jenistransaksi" name="jenistransaksi" placeholder="">
     </div>
     <div class="form-group">
-      <input type="hidden" class="form-control" id="status" value="Belum terverifikasi" name="status" readonly="">
+      <input type="hidden" class="form-control" id="status" value="Belum terverifikasi" name="status">
     </div>
     <div class="form-group">
-      <input type="hidden" value="0" class="form-control" id="jumlah_pembayaran" name="jumlah_pembayaran" placeholder="Masukkan harga dalam" readonly="">
+      <input type="hidden" value="0" class="form-control" id="jumlah_pembayaran" name="jumlah_pembayaran">
     </div>
     <button type="submit" class="btn btn-primary">Simpan</button>
   </form>
   <!-- Button trigger modal -->
 
+  @endsection
+
+  @section('notif')
+    @foreach($notif as $nt)
+    <a href="#" class="dropdown-item dropdown-item-unread">
+      <div class="dropdown-item-icon bg-primary text-white">
+        <i class="fas fa-code"></i>
+      </div>
+      <div class="dropdown-item-desc">
+        <p>No Transaksi &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; : {{$nt->id_transaksi}}</p>
+        <p>Total Pembayaran : Rp. {{$nt->jumlah_pembayaran}}</p>
+        <p>Tgl Transaksi  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: {{ Carbon\Carbon::parse($nt->created_at)->format("d-m-Y")  }}</p>
+        <?php $idp = $nt->id_paket?>
+        <p>Tgl Pengambilan &nbsp;&nbsp; :
+        @if($idp == 1 )
+          {{ Carbon\Carbon::parse($nt->created_at)->addDays(1)->format("d-m-Y")  }}
+        @else
+          {{ Carbon\Carbon::parse($nt->created_at)->addDays(3)->format("d-m-Y")  }}
+        @endif
+        </p>
+        <div class="time text-primary">2 Min Ago</div>
+      </div>
+    </a>
+    @endforeach
   @endsection
 
   @section('script')

@@ -58,7 +58,7 @@
   <!-- JS Libraies -->
 
   <!-- Template JS File -->
-  <script src="../assets/js/scripts.js"></script>
+  <script src="{!! asset('assets/js/scripts.js') !!}"></script>
   <script src="../assets/js/custom.js"></script>
 
 

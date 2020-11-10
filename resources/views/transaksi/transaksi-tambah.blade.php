@@ -3,30 +3,19 @@
 @section('title','Tambah Transaksi')
 
 @section('content')
-<!-- Button trigger modal -->
-
-<!-- Modal -->
 @if (session('status'))
-<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-        {{ session('status') }}
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Save changes</button>
-      </div>
-    </div>
-  </div>
-</div>
-@endif
+<button id="tombolku" style="display:none;" class="but">Open Modal</button>
+ <div id="myModal" class="penghalang">
+     <div class="modal-content">
+         <span id="tutup">&times;</span>
+         <h4><center>SIMAUDY</center></h4>
+         <b>Total Pembayaran : <span class="badge badge-primary">Rp .{{ session('status') }}</span></b><br><br>
+         <b>Tgl Transaksi &nbsp; &nbsp; &nbsp;&nbsp;&nbsp; : <span class="badge badge-primary">{{ session('tglawal') }}</span></b><br><br>
+         <b>Tgl Selesai &nbsp; &nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; : <span class="badge badge-primary">{{ session('tglselesai') }}</span></b><br>
+         <a href="/transaksi" class="badge badge-warning">Kembali</a>
+     </div>
+ </div>
+ @endif
 <form method="post" action="/transaksi">
   @csrf
   <div class="form-group">
@@ -43,7 +32,10 @@
         <div class="row">
           <div class="input-field col s12">
             <label for="jenispaket">Jenis Paket</label>
-            <input type="text" id="jenispaket" name="jenispaket" autocomplete="off" class="form-control" placeholder="Masukkan Jenis Paket">
+            <input type="text" id="jenispaket" name="jenispaket" autocomplete="off" value="{{ old('jenispaket') }}" class="form-control @error('jenispaket') is-invalid @enderror" placeholder="Masukkan Jenis Paket">
+            @error('jenispaket')
+              <div class="invalid-feedback">{{$message}}</div>
+            @enderror
           </div>
         </div>
       </div>
@@ -51,7 +43,10 @@
   </div>
     <div class="form-group">
       <label for="berat_pakaian">Berat Pakaian</label>
-      <input type="number" class="form-control" id="berat_pakaian" name="berat_pakaian" placeholder="Masukkan Berat Pakaian">
+      <input type="number" class="form-control @error('berat_pakaian') is-invalid @enderror" value="{{ old('berat_pakaian') }}" id="berat_pakaian" name="berat_pakaian" placeholder="Masukkan Berat Pakaian">
+      @error('berat_pakaian')
+        <div class="invalid-feedback">{{$message}}</div>
+      @enderror
     </div>
     <div class="form-group">
       <input type="hidden" value="" class="form-control" id="harga" name="harga" placeholder="Masukkan Harga Satuan"  readonly="">
@@ -63,7 +58,7 @@
       <label for="jumlah_pembayaran">Jumlah Pembayaran</label>
       <input type="text" value="" class="form-control" id="jumlah_pembayaran" name="jumlah_pembayaran" placeholder="Masukkan harga dalam" readonly="">
     </div>
-    <button type="submit" class="btn btn-primary">Simpan</button>
+    <button id="tombolku" class="btn btn-primary">Simpan</button>
   </form>
   <!-- Button trigger modal -->
 

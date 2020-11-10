@@ -24,7 +24,15 @@
     <th scope="col" align="center">Jumlah Pembayaran</th>
   </tr>
 </thead>
-<tbody>
+  @if($transaksi == "Tidak ada transaksi untuk range tanggal tersebut!")
+  <div class="alert alert-warning alert-dismissible fade show" role="alert">
+    <strong>{{ $transaksi }}</strong>
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  @else
+  <tbody>
   <tr>
     @foreach($transaksi as $tr)
     <td scope="row" align="center">{{ $loop->iteration }}</td>
@@ -36,5 +44,6 @@
   </tr>
   @endforeach
 </tbody>
+@endif
 </table>
 @endsection

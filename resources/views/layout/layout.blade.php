@@ -76,16 +76,6 @@
                 </a>
                 <a href="#" class="dropdown-item">
                   <div class="dropdown-item-avatar">
-                    <img alt="image" src="../assets/img/avatar/avatar-4.png" class="rounded-circle">
-                  </div>
-                  <div class="dropdown-item-desc">
-                    <b>Ardian Rahardiansyah</b>
-                    <p>Duis aute irure dolor in reprehenderit in voluptate velit ess</p>
-                    <div class="time">16 Hours Ago</div>
-                  </div>
-                </a>
-                <a href="#" class="dropdown-item">
-                  <div class="dropdown-item-avatar">
                     <img alt="image" src="../assets/img/avatar/avatar-5.png" class="rounded-circle">
                   </div>
                   <div class="dropdown-item-desc">
@@ -108,51 +98,7 @@
                 </div>
               </div>
               <div class="dropdown-list-content dropdown-list-icons">
-                <a href="#" class="dropdown-item dropdown-item-unread">
-                  <div class="dropdown-item-icon bg-primary text-white">
-                    <i class="fas fa-code"></i>
-                  </div>
-                  <div class="dropdown-item-desc">
-                    Template update is available now!
-                    <div class="time text-primary">2 Min Ago</div>
-                  </div>
-                </a>
-                <a href="#" class="dropdown-item">
-                  <div class="dropdown-item-icon bg-info text-white">
-                    <i class="far fa-user"></i>
-                  </div>
-                  <div class="dropdown-item-desc">
-                    <b>You</b> and <b>Dedik Sugiharto</b> are now friends
-                    <div class="time">10 Hours Ago</div>
-                  </div>
-                </a>
-                <a href="#" class="dropdown-item">
-                  <div class="dropdown-item-icon bg-success text-white">
-                    <i class="fas fa-check"></i>
-                  </div>
-                  <div class="dropdown-item-desc">
-                    <b>Kusnaedi</b> has moved task <b>Fix bug header</b> to <b>Done</b>
-                    <div class="time">12 Hours Ago</div>
-                  </div>
-                </a>
-                <a href="#" class="dropdown-item">
-                  <div class="dropdown-item-icon bg-danger text-white">
-                    <i class="fas fa-exclamation-triangle"></i>
-                  </div>
-                  <div class="dropdown-item-desc">
-                    Low disk space. Let's clean it!
-                    <div class="time">17 Hours Ago</div>
-                  </div>
-                </a>
-                <a href="#" class="dropdown-item">
-                  <div class="dropdown-item-icon bg-info text-white">
-                    <i class="fas fa-bell"></i>
-                  </div>
-                  <div class="dropdown-item-desc">
-                    Welcome to Stisla template!
-                    <div class="time">Yesterday</div>
-                  </div>
-                </a>
+                @yield('notif')
               </div>
               <div class="dropdown-footer text-center">
                 <a href="#">View All <i class="fas fa-chevron-right"></i></a>
@@ -184,7 +130,7 @@
       <div class="main-sidebar">
         <aside id="sidebar-wrapper">
           <div class="sidebar-brand">
-            <a href="/">Stisla</a>
+            <a href="/">SIMAUDY</a>
           </div>
           <div class="sidebar-brand sidebar-brand-sm">
             <a href="/">St</a>
@@ -192,9 +138,9 @@
 
           <ul class="sidebar-menu">
             <li><a class="nav-link" href="/"><i class="fas fa-th-large"></i>Dashboard</a></li>
+            <li><a class="nav-link" href="/tentangkami"><i class="fas fa-th-large"></i>Tentang Kami</a></li>
             @if(auth()->user()->id_role == '3')
             <li><a class="nav-link" href="/transaksi"><i class="fas fa-th-large"></i>Transaksi</a></li>
-            <li><a class="nav-link" href="/tentangkami"><i class="fas fa-th-large"></i>Tentang Kami</a></li>
             <li><a class="nav-link" href="/antarjemput"><i class="fas fa-th-large"></i>Antar Jemput</a></li>
             @endif
 
@@ -276,6 +222,13 @@
   <script src="{!! asset('assets/js/page/bootstrap-modal.js') !!}"></script>
   @yield('script')
   @yield('autocomplete')
-
+  <script>
+  $('#myModal').modal('show');
+  </script>
+  <script type="text/javascript">
+    $(document).ready(function() {
+        $('.but').trigger('click');
+    })
+</script>
 </body>
 </html>

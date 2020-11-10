@@ -16,7 +16,7 @@
             </span>
         @enderror
       </div>
-      <input id="id_role" type="hidden" class="form-control" name="id_role" value="1">
+      <input id="id_role" type="hidden" class="form-control" name="id_role" value="4">
       <div class="form-group col-6">
         <label for="no_telp">{{ __('No Telp') }}</label>
         <input id="no_telp" type="text" class="form-control @error('no_telp') is-invalid @enderror" name="no_telp" value="{{ old('no_telp') }}" required autocomplete="no_telp" autofocus>

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\transaksi;
 use App\jenispaket;
 use App\user;
+use Illuminate\Support\Carbon;
 use DB;
 use Illuminate\Http\Request;
 
@@ -23,6 +24,7 @@ class transaksiController extends Controller
                     ->select('users.name','transaksi.jumlah_pembayaran', 'transaksi.berat_pakaian', 'jenis_paket.nama_paket')
                     ->get();
                     return view('transaksi.transaksi-read', compact('transaksi'));
+
         // $transaksi = \App\transaksi::with('users','jenis_paket')->paginate(10);
         // return view('transaksi.transaksi-read', compact('transaksi'));
     }
@@ -52,8 +54,22 @@ class transaksiController extends Controller
      */
     public function store(Request $request)
     {
+      $request->validate([
+        'jenispaket' => 'required',
+        'berat_pakaian' => 'required'
+      ]);
       transaksi::create($request->all());
-      return redirect('/transaksi')->with('status', 'Transaksi Baru Ditampilkan');
+      $transaksi = $request->all();
+      $tgl =Carbon::now()->format('d-M-Y');
+      if ($request->id_paket == 1) {
+        $tglselesai = Carbon::now()->addDays(1)->format('d-M-Y');
+      }
+      else {
+        $tglselesai = Carbon::now()->addDays(3)->format('d-M-Y');
+      }
+      return redirect('/transaksi/tambah')->with('status', "$request->jumlah_pembayaran ")
+                                  ->with('tglawal', "$tgl")
+                                    ->with('tglselesai', " $tglselesai");
     }
 
     /**

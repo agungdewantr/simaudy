@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\jenispaket;
 use App\transaksi;
+use DB;
 
 class pesanlaundryController extends Controller
 {
@@ -25,8 +26,13 @@ class pesanlaundryController extends Controller
      */
     public function create()
     {
+      $id = auth()->user()->id;
+        $notif = DB::table('transaksi')->select('id_transaksi','id_users', 'id_paket', 'jumlah_pembayaran', 'created_at','status')
+                                  ->where([['status', '=' ,'Terverifikasi'],['id_users', '=', "$id"]])
+                                  ->orderBy('created_at', 'desc')
+                                  ->get();
         $paket = \App\jenispaket::all();
-        return view('pelanggan.pesanlaundry', compact('paket'));
+        return view('pelanggan.pesanlaundry', compact('paket','notif'));
     }
 
     /**
@@ -37,8 +43,11 @@ class pesanlaundryController extends Controller
      */
     public function store(Request $request)
     {
+      $request->validate([
+        'alamat' => 'required'
+      ]);
       transaksi::create($request->all());
-      return redirect('/laundrysekarang')->with('status', 'Transaksi Baru Ditampilkan');
+      return redirect('/laundrysekarang')->with('status', 'Layanan Antar-Jemput berhasil ditambahkan. Mohon menunggu kurir untuk menjemput pesanan anda!');
     }
 
     /**

@@ -34,6 +34,9 @@ class rekapcontroller extends Controller
                     ->whereDate('transaksi.created_at', '>=' , $tgl1)
                     ->whereDate('transaksi.created_at', '<=' , $tgl2)
                     ->get();
+                    if (count($transaksi) == 0) {
+                      $transaksi = "Tidak ada transaksi untuk range tanggal tersebut!";
+                    }
                     return view('rekaptransaksi', compact('transaksi'));
 
     }
