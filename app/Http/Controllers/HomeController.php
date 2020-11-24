@@ -39,9 +39,4 @@ class HomeController extends Controller
       $jenispaket = \App\jenispaket::all();
       return view('tentangkami', compact('jenispaket'));
     }
-
-    public function notification()
-    {
-      
-    }
 }

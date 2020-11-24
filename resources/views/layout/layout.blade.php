@@ -8,6 +8,7 @@
   <!-- General CSS Files -->
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+  <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
 
   <!-- CSS Libraries -->
   <link rel="stylesheet" href="{!! asset('node_modules/prismjs/themes/prism.css') !!}">
@@ -17,7 +18,7 @@
   <link rel="stylesheet" href="{!! asset('assets/css/components.css') !!}">
 </head>
 
-<body>
+<body onload="@yield('onload')">
   <div id="app">
     <div class="main-wrapper">
       <div class="navbar-bg"></div>
@@ -34,7 +35,7 @@
           </div>
         </form>
         <ul class="navbar-nav navbar-right">
-          <li class="dropdown dropdown-list-toggle"><a href="#" data-toggle="dropdown" class="nav-link nav-link-lg message-toggle beep"><i class="far fa-envelope"></i></a>
+          <!-- <li class="dropdown dropdown-list-toggle"><a href="#" data-toggle="dropdown" class="nav-link nav-link-lg message-toggle beep"><i class="far fa-envelope"></i></a>
             <div class="dropdown-menu dropdown-list dropdown-menu-right">
               <div class="dropdown-header">Messages
                 <div class="float-right">
@@ -89,24 +90,10 @@
                 <a href="#">View All <i class="fas fa-chevron-right"></i></a>
               </div>
             </div>
-          </li>
-          <li class="dropdown dropdown-list-toggle"><a href="#" data-toggle="dropdown" class="nav-link notification-toggle nav-link-lg beep"><i class="far fa-bell"></i></a>
-            <div class="dropdown-menu dropdown-list dropdown-menu-right">
-              <div class="dropdown-header">Notifications
-                <div class="float-right">
-                  <a href="#">Mark All As Read</a>
-                </div>
-              </div>
-              <div class="dropdown-list-content dropdown-list-icons">
-                @yield('notif')
-              </div>
-              <div class="dropdown-footer text-center">
-                <a href="#">View All <i class="fas fa-chevron-right"></i></a>
-              </div>
-            </div>
-          </li>
+          </li> -->
+          @yield('notif')
           <li class="dropdown"><a href="#" data-toggle="dropdown" class="nav-link dropdown-toggle nav-link-lg nav-link-user">
-            <img alt="image" src="../assets/img/avatar/avatar-1.png" class="rounded-circle mr-1">
+            <img alt="image" src="{!! asset('assets/img/avatar/avatar-1.png') !!}" class="rounded-circle mr-1">
             <div class="d-sm-none d-lg-inline-block">{{auth()->user()->name}}</div></a>
             <div class="dropdown-menu dropdown-menu-right">
               <div class="dropdown-title">Logged in 5 min ago</div>
@@ -133,25 +120,28 @@
             <a href="/">SIMAUDY</a>
           </div>
           <div class="sidebar-brand sidebar-brand-sm">
-            <a href="/">St</a>
+            <a href="/">SM</a>
           </div>
 
           <ul class="sidebar-menu">
             <li><a class="nav-link" href="/"><i class="fas fa-th-large"></i>Dashboard</a></li>
-            <li><a class="nav-link" href="/tentangkami"><i class="fas fa-th-large"></i>Tentang Kami</a></li>
             @if(auth()->user()->id_role == '3')
             <li><a class="nav-link" href="/transaksi"><i class="fas fa-th-large"></i>Transaksi</a></li>
             <li><a class="nav-link" href="/antarjemput"><i class="fas fa-th-large"></i>Antar Jemput</a></li>
+            <li><a class="nav-link" href="/kelolanolemari"><i class="fas fa-th-large"></i>Kelola Nomor Lemari</a></li>
             @endif
 
             @if(auth()->user()->id_role == '4')
             <li><a class="nav-link" href="/laundrysekarang"><i class="fas fa-th-large"></i>Laundry Sekarang</a></li>
-
+            <li><a class="nav-link" href="/riwayattransaksi"><i class="fas fa-th-large"></i>Riwayat Transaksi</a></li>
+            <li><a class="nav-link" href="/cekpesanan"><i class="fas fa-th-large"></i>Cek Pesanan</a></li>
             @endif
 
             @if(auth()->user()->id_role == '2')
             <li><a class="nav-link" href="/rekaptransaksi"><i class="fas fa-th-large"></i>Rekap Transaksi</a></li>
+            <li><a class="nav-link" href="/statusoperasional"><i class="fas fa-th-large"></i>Status Operasional</a></li>
             @endif
+            <li><a class="nav-link" href="/tentangkami"><i class="fas fa-th-large"></i>Tentang Kami</a></li>
 
 
 

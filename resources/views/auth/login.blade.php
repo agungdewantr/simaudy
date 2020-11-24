@@ -6,9 +6,18 @@
 <div class="card-body">
   <div class="form-group">
     @if (session('status'))
-      <div class="alert alert-light" role="alert">
+    <button id="tombolku" style="display:none;" class="but">Open Modal</button>
+     <div id="myModal" class="penghalang">
+         <div class="modal-content">
+             <span id="tutup">&times;</span>
+             <center><img src="{!! asset('assets/img/regisberhasil.svg')!!}" alt="regisberhasil" width="30%"></center>
+             <b><p><center>{{ session('status') }}</center></p></b>
+             <a href="/login" class="badge badge-primary">Kembali</a>
+         </div>
+     </div>
+      <!-- <div class="alert alert-light" role="alert">
           {{ session('status') }}
-      </div>
+      </div> -->
     @endif
   </div>
   <form method="POST"  action="{{ route('login') }}" class="needs-validation">

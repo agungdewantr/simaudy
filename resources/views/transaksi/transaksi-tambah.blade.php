@@ -9,9 +9,15 @@
      <div class="modal-content">
          <span id="tutup">&times;</span>
          <h4><center>SIMAUDY</center></h4>
-         <b>Total Pembayaran : <span class="badge badge-primary">Rp .{{ session('status') }}</span></b><br><br>
-         <b>Tgl Transaksi &nbsp; &nbsp; &nbsp;&nbsp;&nbsp; : <span class="badge badge-primary">{{ session('tglawal') }}</span></b><br><br>
-         <b>Tgl Selesai &nbsp; &nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; : <span class="badge badge-primary">{{ session('tglselesai') }}</span></b><br>
+         <table border="0">
+           <tbody>
+           <tr><td><b>Total Pembayaran</b></td><td>:</td><td><b><span class="badge badge-primary">Rp .{{ session('status') }}</span><br></b></td></tr><br><br>
+           <tr><td>Tgl Transaksi</td><td>:</td><td><span class="badge badge-primary">{{ session('tglawal') }}</span><br></td></tr><br>
+           <tr><td>Tgl Selesai </td><td>:</td><td><span class="badge badge-primary">{{ session('tglselesai') }}</span></td></tr><br>
+           <tr><td>No Lemari</td><td>:</td><td><span class="badge badge-primary">{{ session('no_lemari') }}</span></td></tr><br>
+           </tbody>
+         </table>
+         <br><br>
          <a href="/transaksi" class="badge badge-warning">Kembali</a>
      </div>
  </div>
@@ -21,6 +27,7 @@
   <div class="form-group">
     <label for="idusers">ID Pelanggan</label>
     <select name="id_users" class="form-control form-control-lg">
+      <option value="17">--Bukan pelanggan Terdaftar--</option>
       @foreach($user as $usr)
         <option value="{{$usr->id}}">{{$usr->id}}</option>
       @endforeach
@@ -41,6 +48,11 @@
       </div>
     </div>
   </div>
+  @foreach($lemari as $lm)
+  <input type="hidden" name="idlemari" id="idlemari" value="{{$lm->idlemari}}">
+  @endforeach
+  <input type="hidden" name="id_tempat_laundry" id="id_tempat_laundry" value="1">
+  <input type="hidden" name="status_pengantaran" id="status_pengantaran" value="">
     <div class="form-group">
       <label for="berat_pakaian">Berat Pakaian</label>
       <input type="number" class="form-control @error('berat_pakaian') is-invalid @enderror" value="{{ old('berat_pakaian') }}" id="berat_pakaian" name="berat_pakaian" placeholder="Masukkan Berat Pakaian">

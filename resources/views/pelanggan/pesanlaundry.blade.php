@@ -6,6 +6,7 @@
 <!-- Button trigger modal -->
 
 <!-- Modal -->
+@if($stoperasional->status_operasional == "Buka")
 @if (session('status'))
 <div class="alert alert-warning alert-dismissible fade show" role="alert">
   <strong>{{ session('status') }}</strong>
@@ -37,6 +38,11 @@
     <div class="form-group">
       <input type="hidden" class="form-control" id="berat_pakaian" value="0" name="berat_pakaian" placeholder="Masukkan Berat Pakaian">
     </div>
+    @foreach($lemari as $lm)
+    <input type="hidden" name="idlemari" id="idlemari" value="{{$lm->idlemari}}">
+    @endforeach
+    <input type="hidden" name="id_tempat_laundry" id="id_tempat_laundry" value="1">
+    <input type="hidden" name="status_pengantaran" id="status_pengantaran" value="">
     <div class="form-group">
       <input type="hidden" class="form-control" id="harga" value="0" name="harga" placeholder="Masukkan Harga Satuan"  readonly="">
     </div>
@@ -49,34 +55,64 @@
     <div class="form-group">
       <input type="hidden" value="0" class="form-control" id="jumlah_pembayaran" name="jumlah_pembayaran">
     </div>
-    <button type="submit" class="btn btn-primary">Simpan</button>
+    <button type="submit" class="btn btn-primary">Pesan</button>
   </form>
   <!-- Button trigger modal -->
 
   @endsection
 
   @section('notif')
-    @foreach($notif as $nt)
-    <a href="#" class="dropdown-item dropdown-item-unread">
-      <div class="dropdown-item-icon bg-primary text-white">
-        <i class="fas fa-code"></i>
+  <li class="dropdown dropdown-list-toggle"><a href="#" data-toggle="dropdown" class="nav-link notification-toggle nav-link-lg beep"><i class="far fa-bell"></i></a>
+    <div class="dropdown-menu dropdown-list dropdown-menu-right">
+      <div class="dropdown-header">Pesanan Laundry Anda
+        <!-- <div class="float-right">
+          <a href="#">Mark All As Read</a>
+        </div> -->
       </div>
-      <div class="dropdown-item-desc">
-        <p>No Transaksi &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; : {{$nt->id_transaksi}}</p>
-        <p>Total Pembayaran : Rp. {{$nt->jumlah_pembayaran}}</p>
-        <p>Tgl Transaksi  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: {{ Carbon\Carbon::parse($nt->created_at)->format("d-m-Y")  }}</p>
-        <?php $idp = $nt->id_paket?>
-        <p>Tgl Pengambilan &nbsp;&nbsp; :
-        @if($idp == 1 )
-          {{ Carbon\Carbon::parse($nt->created_at)->addDays(1)->format("d-m-Y")  }}
-        @else
-          {{ Carbon\Carbon::parse($nt->created_at)->addDays(3)->format("d-m-Y")  }}
-        @endif
-        </p>
-        <div class="time text-primary">2 Min Ago</div>
+      <div class="dropdown-list-content dropdown-list-icons">
+        @foreach($notif as $nt)
+        <a href="#" class="dropdown-item dropdown-item-unread">
+          <div class="dropdown-item-icon bg-primary text-white">
+            <i class="fas fa-code"></i>
+          </div>
+          <div class="dropdown-item-desc">
+            <p>No Transaksi &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; : {{$nt->id_transaksi}}</p>
+            <p>Total Pembayaran : Rp. {{$nt->jumlah_pembayaran}}</p>
+            <p>Tgl Transaksi  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: {{ Carbon\Carbon::parse($nt->created_at)->format("d-m-Y")  }}</p>
+            <?php $idp = $nt->id_paket?>
+            <p>Tgl Pengambilan &nbsp;&nbsp; :
+            @if($idp == 1 )
+              {{ Carbon\Carbon::parse($nt->created_at)->addDays(1)->format("d-m-Y")  }}
+            @else
+              {{ Carbon\Carbon::parse($nt->created_at)->addDays(3)->format("d-m-Y")  }}
+            @endif
+            </p>
+            <div class="time text-primary">2 Min Ago</div>
+          </div>
+        </a>
+        @endforeach
       </div>
-    </a>
-    @endforeach
+      <div class="dropdown-footer text-center">
+        <a href="#">View All <i class="fas fa-chevron-right"></i></a>
+      </div>
+    </div>
+  </li>
+  @else
+  <button id="tombolku" style="display:none;" class="but">Open Modal</button>
+   <div id="myModal" class="penghalang">
+       <div class="modal-content">
+           <span id="tutup">&times;</span>
+           <h4 class="text-center">SIMAUDY</h4>
+           <div class="row justify-content-center">
+             <center><img src="{!! asset('assets/img/closed.svg')!!}" alt="regisberhasil" width="30%"></center>
+           <p class="d-inline text-center"><b>Maaf tempat laundry ini sedang tutup</b></p>
+           </div>
+           <div class="row justify-content-center">
+             <a href="/" class="d-inline badge badge-primary" style="width:20%;">Ya</a>
+           </div>
+       </div>
+   </div>
+  @endif
   @endsection
 
   @section('script')

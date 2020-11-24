@@ -1,5 +1,5 @@
 @extends('layout.layout')
-@section('namamenu', 'Transaksi')
+@section('namamenu', 'Transaksi Online')
 @section('title','Data Transaksi Antar Jemput')
 
 @section('content')
@@ -13,11 +13,13 @@
   </div>
 </div>
   @endif
+<div class="table-responsive">
 <table class="table table-striped">
+  @if(count($transaksi) != 0 )
 <thead align="center">
   <tr class="table-primary">
     <th scope="col" align="center">No</th>
-    <th scope="col" align="center">Tgl</th>
+    <th scope="col" align="center">Tgl Transaksi</th>
     <th scope="col" align="center">Nama</th>
     <th scope="col" align="center">Jenis Paket</th>
     <th scope="col" align="center">Alamat</th>
@@ -26,6 +28,7 @@
     <th scope="col" align="center">Aksi</th>
   </tr>
 </thead>
+@endif
 <tbody>
   <tr>
     @foreach($transaksi as $tr)
@@ -41,9 +44,27 @@
       <td align="center">{{ Carbon\Carbon::parse($tr->created_at)->addDays(3)->format("d-m-Y")  }}</td>
     @endif
     <td align="center">{{ $tr->status }}</td>
-    <td align="center"><a href="/antarjemput/{{$tr->id_transaksi}}" class="badge badge-info">Detail</a></td>
+    <!-- <a href="/antarjemput/{{$tr->id_transaksi}}" class="badge badge-info">Setujui</a> -->
+
+    <td align="center">
+      @if($tr->status == 'Belum terverifikasi')
+          <form class="d-inline p-2" action="/antarjemput/verifikasi/{{$tr->id_transaksi}}" method="post">
+            @csrf
+            @method('put')
+            <button type="submit" class="badge badge-warning" style="border-style : none;">Setujui</button>
+          </form>
+          <form class="" action="/antarjemput/tolak/{{$tr->id_transaksi}}" method="post">
+            @csrf
+            @method('put')
+            <button type="submit" class="badge badge-danger" style="border-style : none;">Tolak</button>
+          </form>
+      @elseif($tr->status == 'Terverifikasi')
+        <a href="/antarjemput/{{$tr->id_transaksi}}" class="badge badge-info">Detail</a>
+      @endif
+    </td>
   </tr>
   @endforeach
 </tbody>
 </table>
+</diV>
 @endsection

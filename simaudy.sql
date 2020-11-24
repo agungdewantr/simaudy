@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 10, 2020 at 10:07 AM
+-- Generation Time: Nov 24, 2020 at 04:11 AM
 -- Server version: 10.4.14-MariaDB
 -- PHP Version: 7.4.10
 
@@ -41,8 +41,38 @@ CREATE TABLE `jenis_paket` (
 --
 
 INSERT INTO `jenis_paket` (`id_paket`, `nama_paket`, `harga`, `created_at`, `updated_at`, `keterangan`) VALUES
-(1, 'Express', 12000, '2020-11-06 09:54:40', NULL, 'MAX 1 Hari + Setrika'),
-(2, 'Biasa', 8000, '2020-11-06 09:55:27', NULL, 'MAX 3 Hari + Setrika');
+(1, 'Express', 12000, '2020-11-06 09:54:40', NULL, 'Max 1 Hari + Seterika'),
+(2, 'Biasa', 8000, '2020-11-06 09:55:27', NULL, 'Max 3 Hari + Seterika');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `lemari`
+--
+
+CREATE TABLE `lemari` (
+  `idlemari` bigint(20) UNSIGNED NOT NULL,
+  `status` enum('Terpakai','Tersedia') COLLATE utf8mb4_unicode_ci NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `lemari`
+--
+
+INSERT INTO `lemari` (`idlemari`, `status`, `created_at`, `updated_at`) VALUES
+(1, 'Terpakai', '2020-11-20 02:34:22', '2020-11-20 05:36:17'),
+(2, 'Tersedia', '2020-11-20 02:34:22', '2020-11-22 22:04:20'),
+(3, 'Terpakai', '2020-11-20 05:37:39', '2020-11-20 06:04:03'),
+(4, 'Tersedia', '2020-11-19 20:58:27', '2020-11-21 20:19:54'),
+(5, 'Tersedia', '2020-11-22 22:08:05', NULL),
+(6, 'Terpakai', '2020-11-22 22:08:11', '2020-11-22 22:08:45'),
+(7, 'Terpakai', '2020-11-22 22:08:18', '2020-11-22 22:41:16'),
+(8, 'Tersedia', '2020-11-22 22:41:31', NULL),
+(9, 'Tersedia', '2020-11-22 22:41:37', NULL),
+(10, 'Terpakai', '2020-11-22 22:41:43', '2020-11-23 19:28:46'),
+(11, 'Tersedia', '2020-11-22 22:41:51', NULL);
 
 -- --------------------------------------------------------
 
@@ -66,9 +96,11 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 (31, '2020_11_05_093530_create_users_table', 1),
 (32, '2020_11_05_093756_create_jenis_paket_table', 1),
 (33, '2020_11_05_094007_create_transaksi_table', 1),
-(34, '2020_11_09_005448_add_alamat_to_transaksi', 2),
-(35, '2020_11_09_091224_add_kolom_to_transaksi', 3),
-(36, '2020_11_09_095905_add_keterangan_to_jenis_paket', 4);
+(37, '2020_11_09_005448_add_alamat_to_transaksi', 2),
+(40, '2020_11_09_095905_add_keterangan_to_jenis_paket', 3),
+(41, '2020_11_17_115818_create_lemari_table', 3),
+(42, '2020_11_20_015417_create_tempat_laundry_table', 4),
+(43, '2020_11_20_020108_create_penilaian_laundry_table', 5);
 
 -- --------------------------------------------------------
 
@@ -108,6 +140,27 @@ INSERT INTO `role` (`id_role`, `role`, `created_at`, `updated_at`) VALUES
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `tempat_laundry`
+--
+
+CREATE TABLE `tempat_laundry` (
+  `id_tempat_laundry` bigint(20) UNSIGNED NOT NULL,
+  `nama_tempat_laundry` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `status_operasional` enum('Tutup','Buka') COLLATE utf8mb4_unicode_ci NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `tempat_laundry`
+--
+
+INSERT INTO `tempat_laundry` (`id_tempat_laundry`, `nama_tempat_laundry`, `status_operasional`, `created_at`, `updated_at`) VALUES
+(1, 'Maju Jaya Laundry', 'Tutup', '2020-11-20 02:36:00', '2020-11-21 21:09:29');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `transaksi`
 --
 
@@ -119,33 +172,30 @@ CREATE TABLE `transaksi` (
   `jumlah_pembayaran` bigint(20) NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
-  `alamat` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `jenistransaksi` enum('offline','online') COLLATE utf8mb4_unicode_ci NOT NULL,
-  `status` enum('Terverifikasi','Belum terverifikasi') COLLATE utf8mb4_unicode_ci DEFAULT NULL
+  `status` enum('Terverifikasi','Belum terverifikasi','Ditolak') COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `alamat` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `idlemari` bigint(20) UNSIGNED NOT NULL,
+  `id_tempat_laundry` bigint(20) UNSIGNED NOT NULL,
+  `status_pengantaran` enum('Akan Diantar','Dalam Perjalanan','Pakaian telah diterima/diambil') COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `rating` int(11) DEFAULT NULL,
+  `deskripsi_penilaian` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Dumping data for table `transaksi`
 --
 
-INSERT INTO `transaksi` (`id_transaksi`, `id_users`, `id_paket`, `berat_pakaian`, `jumlah_pembayaran`, `created_at`, `updated_at`, `alamat`, `jenistransaksi`, `status`) VALUES
-(1, 2, 1, 2, 24000, '2020-11-08 06:31:25', '2020-11-08 06:31:25', 'jl kalimantan', 'offline', NULL),
-(15, 1, 1, 1, 12000, '2020-11-04 06:58:09', '2020-11-09 09:32:32', 'Jl. Sumetera', 'online', 'Terverifikasi'),
-(69, 1, 2, 1, 8000, '2020-11-09 23:13:16', '2020-11-09 23:13:16', NULL, 'offline', NULL),
-(70, 1, 2, 1, 8000, '2020-11-09 23:14:59', '2020-11-09 23:14:59', NULL, 'offline', NULL),
-(71, 1, 2, 1, 8000, '2020-11-09 23:15:32', '2020-11-09 23:15:32', NULL, 'offline', NULL),
-(81, 1, 2, 1, 8000, '2020-11-09 23:25:01', '2020-11-09 23:25:01', NULL, 'offline', NULL),
-(82, 1, 2, 1, 8000, '2020-11-09 23:26:30', '2020-11-09 23:26:30', NULL, 'offline', NULL),
-(83, 1, 1, 1, 12000, '2020-11-09 23:27:36', '2020-11-09 23:27:36', NULL, 'offline', NULL),
-(84, 1, 1, 1, 12000, '2020-11-09 23:28:19', '2020-11-09 23:28:19', NULL, 'offline', NULL),
-(100, 1, 1, 1, 12000, '2020-11-10 01:07:30', '2020-11-10 01:14:47', 'a', 'online', 'Terverifikasi'),
-(101, 1, 1, 0, 0, '2020-11-10 01:07:46', '2020-11-10 01:07:46', 'a', 'online', 'Belum terverifikasi'),
-(102, 1, 1, 1, 12000, '2020-11-10 01:08:42', '2020-11-10 01:19:16', 'a', 'online', 'Terverifikasi'),
-(103, 1, 1, 0, 0, '2020-11-10 01:08:55', '2020-11-10 01:08:55', 'a', 'online', 'Belum terverifikasi'),
-(104, 1, 1, 0, 0, '2020-11-10 01:10:02', '2020-11-10 01:10:02', 'a', 'online', 'Belum terverifikasi'),
-(105, 1, 1, 0, 0, '2020-11-10 01:11:27', '2020-11-10 01:11:27', 'a', 'online', 'Belum terverifikasi'),
-(106, 1, 1, 0, 0, '2020-11-10 01:13:18', '2020-11-10 01:13:18', 'a', 'online', 'Belum terverifikasi'),
-(107, 1, 2, 0, 0, '2020-11-10 01:13:39', '2020-11-10 01:13:39', 'Jl Jawa', 'online', 'Belum terverifikasi');
+INSERT INTO `transaksi` (`id_transaksi`, `id_users`, `id_paket`, `berat_pakaian`, `jumlah_pembayaran`, `created_at`, `updated_at`, `jenistransaksi`, `status`, `alamat`, `idlemari`, `id_tempat_laundry`, `status_pengantaran`, `rating`, `deskripsi_penilaian`) VALUES
+(130, 10, 1, 1, 12000, '2020-11-20 05:36:17', '2020-11-21 20:12:04', 'offline', NULL, NULL, 1, 1, 'Dalam Perjalanan', 3, 'Lumayan'),
+(131, 10, 1, 0, 0, '2020-11-20 05:40:40', '2020-11-21 19:53:16', 'online', 'Ditolak', 'Jl. Bengawan Solo', 2, 1, 'Akan Diantar', 5, 'sangat bagus'),
+(132, 10, 1, 1, 12000, '2020-11-20 05:49:53', '2020-11-21 19:20:13', 'online', 'Terverifikasi', 'Jl. Bengawan Solo 78', 3, 1, 'Akan Diantar', 2, 'uwuwu sekali'),
+(133, 10, 1, 1, 12000, '2020-11-21 18:43:20', '2020-11-22 22:12:24', 'online', 'Terverifikasi', 'Jl. Mastrip 90 a', 4, 1, '', 4, 'cepet banget proses laundrynya'),
+(134, 10, 1, 8, 96000, '2020-11-21 20:15:21', '2020-11-22 22:07:06', 'online', 'Terverifikasi', 'Jl. Patrang', 2, 1, '', NULL, NULL),
+(135, 10, 2, 99, 792000, '2020-11-21 20:18:42', '2020-11-22 22:04:34', 'online', 'Terverifikasi', 'Jl. Uji coba', 4, 1, 'Pakaian telah diterima/diambil', NULL, NULL),
+(136, 16, 1, 1, 12000, '2020-11-22 22:08:45', '2020-11-22 22:08:45', 'offline', NULL, NULL, 6, 1, 'Akan Diantar', NULL, NULL),
+(138, 16, 2, 1, 8000, '2020-11-22 22:41:16', '2020-11-22 23:06:32', 'offline', NULL, NULL, 7, 1, 'Pakaian telah diterima/diambil', NULL, NULL),
+(139, 17, 1, 1, 12000, '2020-11-23 19:28:46', '2020-11-23 19:28:46', 'offline', NULL, NULL, 10, 1, NULL, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -183,7 +233,12 @@ INSERT INTO `users` (`id`, `id_role`, `name`, `email`, `password`, `no_telp`, `a
 (9, 1, 'z', 'z@g.a', '$2y$10$Xe/hCnYeb6q/ajDKSStRQOAKEJ.KBzduVRRI2G3ZcFh.oa34CH/ea', 'z', 'z', NULL, NULL, '2020-11-05 18:34:01', '2020-11-05 18:34:01'),
 (10, 4, 'pelanggan', 'pelanggan@gmail.com', '$2y$10$tyW1O49iTWGpcT5jJUY5pOct5.eJ7IS5uaEkB5s61Hu0KtubwuxtO', '087757115809', 'Jl. Bengawan Solo', NULL, NULL, '2020-11-10 02:01:34', '2020-11-10 02:01:34'),
 (11, 3, 'karyawan', 'karyawan@gmail.com', '$2y$10$uQX.XHQejXdykD2Vp38MO.ysuL7KscDUamICcAILp9fDuBUqxgROq', '0877777777', 'jember', NULL, NULL, '2020-11-10 02:02:34', '2020-11-10 02:02:34'),
-(12, 2, 'Pemilik', 'pemilik@gmail.com', '$2y$10$B6P1npL6fY7PA4OrfB6BH.UUnPEbyZfYdS7WjmhMFUldeaxrk/27u', '0888888888', 'Jl Jember', NULL, NULL, '2020-11-10 02:03:19', '2020-11-10 02:03:19');
+(12, 2, 'Pemilik', 'pemilik@gmail.com', '$2y$10$B6P1npL6fY7PA4OrfB6BH.UUnPEbyZfYdS7WjmhMFUldeaxrk/27u', '0888888888', 'Jl Jember', NULL, NULL, '2020-11-10 02:03:19', '2020-11-10 02:03:19'),
+(13, 4, 'Jono', 'jono@gmail.com', '$2y$10$JnLRGZ4TEZQDgnwwoc03yu2mcajxZt48toG7Ju6A5Hsc6c.8NOeBC', '081372837191', 'Jl Jawa 6', NULL, NULL, '2020-11-16 03:17:57', '2020-11-16 03:17:57'),
+(14, 4, '11Tes', 'a@a.a', '$2y$10$ZXHBtvlhqu2/dIQTBaXHj.oa3B/mvJzxBWuymkzUTEJRtRJSF6QCq', '081271', 'a', NULL, NULL, '2020-11-16 03:28:36', '2020-11-16 03:28:36'),
+(15, 4, 'a', 'a@a.aa', '$2y$10$xRczytEf8prlshp6HjQvK.JaT/9Y5/4xcT6j1e.7k6ANyXCkdV0Wq', 'a', 'a', NULL, NULL, '2020-11-16 03:30:03', '2020-11-16 03:30:03'),
+(16, 4, 'a', 'agung@gmail.coma', '$2y$10$rX3OXLFLacIBi1p8XFzdDujpBoxox/JLYaG/F1G/42KSuEbHL3iYG', 'a', 'a', NULL, NULL, '2020-11-16 03:36:24', '2020-11-16 03:36:24'),
+(17, 4, 'Bukan Pelanggan', 'anonym@gmail.com', '$2y$10$GLt3TWQIZSgJ/9TfkkrwGOn1LV7vFtwbGDVuykZNRPb49b3ISsW4C', '-', '-', NULL, NULL, '2020-11-23 19:26:17', '2020-11-23 19:26:17');
 
 --
 -- Indexes for dumped tables
@@ -194,6 +249,12 @@ INSERT INTO `users` (`id`, `id_role`, `name`, `email`, `password`, `no_telp`, `a
 --
 ALTER TABLE `jenis_paket`
   ADD PRIMARY KEY (`id_paket`);
+
+--
+-- Indexes for table `lemari`
+--
+ALTER TABLE `lemari`
+  ADD PRIMARY KEY (`idlemari`);
 
 --
 -- Indexes for table `migrations`
@@ -214,12 +275,20 @@ ALTER TABLE `role`
   ADD PRIMARY KEY (`id_role`);
 
 --
+-- Indexes for table `tempat_laundry`
+--
+ALTER TABLE `tempat_laundry`
+  ADD PRIMARY KEY (`id_tempat_laundry`);
+
+--
 -- Indexes for table `transaksi`
 --
 ALTER TABLE `transaksi`
   ADD PRIMARY KEY (`id_transaksi`),
   ADD KEY `transaksi_id_users_foreign` (`id_users`),
-  ADD KEY `transaksi_id_paket_foreign` (`id_paket`);
+  ADD KEY `transaksi_id_paket_foreign` (`id_paket`),
+  ADD KEY `transaksi_idlemari_foreign` (`idlemari`),
+  ADD KEY `transaksi_idtempatlaundry_foreign` (`id_tempat_laundry`);
 
 --
 -- Indexes for table `users`
@@ -240,10 +309,16 @@ ALTER TABLE `jenis_paket`
   MODIFY `id_paket` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
+-- AUTO_INCREMENT for table `lemari`
+--
+ALTER TABLE `lemari`
+  MODIFY `idlemari` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+
+--
 -- AUTO_INCREMENT for table `migrations`
 --
 ALTER TABLE `migrations`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=37;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=44;
 
 --
 -- AUTO_INCREMENT for table `role`
@@ -252,16 +327,22 @@ ALTER TABLE `role`
   MODIFY `id_role` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
+-- AUTO_INCREMENT for table `tempat_laundry`
+--
+ALTER TABLE `tempat_laundry`
+  MODIFY `id_tempat_laundry` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
 -- AUTO_INCREMENT for table `transaksi`
 --
 ALTER TABLE `transaksi`
-  MODIFY `id_transaksi` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=108;
+  MODIFY `id_transaksi` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=140;
 
 --
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
 
 --
 -- Constraints for dumped tables
@@ -272,7 +353,9 @@ ALTER TABLE `users`
 --
 ALTER TABLE `transaksi`
   ADD CONSTRAINT `transaksi_id_paket_foreign` FOREIGN KEY (`id_paket`) REFERENCES `jenis_paket` (`id_paket`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `transaksi_id_users_foreign` FOREIGN KEY (`id_users`) REFERENCES `users` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+  ADD CONSTRAINT `transaksi_id_users_foreign` FOREIGN KEY (`id_users`) REFERENCES `users` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `transaksi_idlemari_foreign` FOREIGN KEY (`idlemari`) REFERENCES `lemari` (`idlemari`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `transaksi_idtempatlaundry_foreign` FOREIGN KEY (`id_tempat_laundry`) REFERENCES `tempat_laundry` (`id_tempat_laundry`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Constraints for table `users`

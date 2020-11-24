@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
 use App\transaksi;
+use App\lemari;
 use DB;
 
 class antarjemputController extends Controller
@@ -20,7 +21,7 @@ class antarjemputController extends Controller
                   ->join('users', 'users.id', '=', 'transaksi.id_users')
                   ->join('jenis_paket', 'jenis_paket.id_paket', '=', 'transaksi.id_paket')
                   ->select('users.name','transaksi.jumlah_pembayaran', 'transaksi.berat_pakaian', 'jenis_paket.nama_paket', 'transaksi.id_paket', 'transaksi.id_transaksi', 'transaksi.created_at', 'transaksi.alamat', 'transaksi.status')
-                  ->where([['transaksi.jenistransaksi', '=', 'online'],['transaksi.status', '=', 'Belum terverifikasi']])
+                  ->where([['transaksi.jenistransaksi', '=', 'online'],['transaksi.berat_pakaian', '=', 0],['transaksi.status', '<>', 'Ditolak']])
                   ->get();
                   return view('transaksi.antarjemput-read', compact('transaksi'));
     }
@@ -96,10 +97,35 @@ class antarjemputController extends Controller
         transaksi::where('id_transaksi', $id)
               ->update([
                 'berat_pakaian' => $request->berat_pakaian,
-                'jumlah_pembayaran' => $request->jumlah_pembayaran,
-                'status' => $request->status
+                'jumlah_pembayaran' => $request->jumlah_pembayaran
               ]);
-        return redirect('/antarjemput')->with('status','Transaksi berhasil diVerifikasi');
+        return redirect('/antarjemput')->with('status','Berat pakaian berhasil ditambah');
+    }
+
+    public function verifikasi(Request $request, $id)
+    {
+        transaksi::where('id_transaksi', $id)
+              ->update([
+                'status' => "Terverifikasi"
+              ]);
+        return redirect('/antarjemput')->with('status','Data Layanan antar-jemput berhasil diverifikasi');
+    }
+
+    public function tolak(Request $request, $id)
+    {
+        transaksi::where('id_transaksi', $id)
+              ->update([
+                'status' => "Ditolak"
+              ]);
+        $transaksi = DB::table('transaksi')
+                  ->select('idlemari')
+                  ->where('id_transaksi', '=', $id)
+                  ->first();
+        lemari::where('idlemari', "$transaksi->idlemari")
+              ->update([
+                'status' => "Tersedia"
+              ]);
+        return redirect('/antarjemput')->with('status','Data Layanan antar-jemput ditolak');
     }
 
     /**

@@ -71,7 +71,8 @@ class RegisterController extends Controller
             'email' => $data['email'],
             'password' => Hash::make($data['password']),
         ]);
-
+        // Auth::logout();
+        // return redirect('/login')->with('status','Anda Berhasil Registrasi');
         return redirect('/login');
     }
 }

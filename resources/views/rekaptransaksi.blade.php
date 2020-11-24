@@ -13,17 +13,8 @@
   </div>
 </form>
 <br>
+<div class="table-responsive">
 <table class="table table-striped">
-<thead align="center">
-  <tr class="table-primary">
-    <th scope="col" align="center">No</th>
-    <th scope="col" align="center">Tgl</th>
-    <th scope="col" align="center">Nama Pelanggan</th>
-    <th scope="col" align="center">Jenis Paket</th>
-    <th scope="col" align="center">Berat Pakaian</th>
-    <th scope="col" align="center">Jumlah Pembayaran</th>
-  </tr>
-</thead>
   @if($transaksi == "Tidak ada transaksi untuk range tanggal tersebut!")
   <div class="alert alert-warning alert-dismissible fade show" role="alert">
     <strong>{{ $transaksi }}</strong>
@@ -32,6 +23,16 @@
     </button>
   </div>
   @else
+  <thead align="center">
+    <tr class="table-primary">
+      <th scope="col" align="center">No</th>
+      <th scope="col" align="center">Tgl</th>
+      <th scope="col" align="center">Nama Pelanggan</th>
+      <th scope="col" align="center">Jenis Paket</th>
+      <th scope="col" align="center">Berat Pakaian</th>
+      <th scope="col" align="center">Jumlah Pembayaran</th>
+    </tr>
+  </thead>
   <tbody>
   <tr>
     @foreach($transaksi as $tr)
@@ -46,4 +47,5 @@
 </tbody>
 @endif
 </table>
+</div>
 @endsection

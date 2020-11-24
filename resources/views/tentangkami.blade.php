@@ -4,7 +4,7 @@
 
 @section('namamenu', 'Tentang Kami')
 @section('content')
-<p>Simply Fresh Laundry berdiri di Yogyakarta, konsep usaha laundry kiloan di Indonesia diyakini pertama kali lahir berasal dari kota pelajar ini.
+<p>Laundry Maju Jaya berdiri di Jember, konsep usaha laundry kiloan di Indonesia diyakini pertama kali lahir berasal dari kota pelajar ini.
 
 Simply Fresh Laundry merupakan waralaba pertama yang bergerak dibidang Bisnis Laundry Kiloan atau binatu dengan konsep cuci dan seterika per kilogram. Dikelola oleh staff ahli yang handal dan berpengalaman dibidangnya membuat Simply Fresh Laundry layak menjadi yang terdepan dalam pilihan berwirausaha.
 
@@ -16,9 +16,10 @@ Sejak 2006 hingga kini Simply Fresh telah berkembang menjadi perusahaan dengan [
   <center>
   <div class="card-body">
 
+<div class="row justify-content-center">
 
     @foreach($jenispaket as $jp)
-      <div class="col-12 col-md-6 col-lg-3">
+      <div class="col-12 col-md-6 col-lg-3" style="">
         <div class="shadow p-3 mb-5 bg-white rounded">
         <div class="card text-center bg-info">
           <div class="d-inline card-body">
@@ -31,8 +32,10 @@ Sejak 2006 hingga kini Simply Fresh telah berkembang menjadi perusahaan dengan [
         </div>
       </div>
       @endforeach
-    <!-- </div> -->
+
+    </div>
+
+    </div>
+    </center>
   </div>
-</center>
-</div>
 @endsection

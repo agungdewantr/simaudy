@@ -64,5 +64,10 @@
 
 
   <!-- Page Specific JS File -->
+  <script type="text/javascript">
+    $(document).ready(function() {
+        $('.but').trigger('click');
+    })
+</script>
 </body>
 </html>

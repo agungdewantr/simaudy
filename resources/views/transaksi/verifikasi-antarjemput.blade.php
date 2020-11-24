@@ -64,12 +64,6 @@
     <div class="form-group">
       <input type="hidden" class="form-control" id="id_paket" name="id_paket" placeholder="Masukkan Jumlah (Kg)">
     </div>
-    <div class="form-check">
-      <input class="form-check-input" type="checkbox" value="Terverifikasi" name="status" id="status">
-      <label class="form-check-label" for="status">
-        Setujui Pesanan
-      </label>
-    </div>
     <br>
     @endforeach
     <button type="submit" class="btn btn-primary">Simpan</button>
