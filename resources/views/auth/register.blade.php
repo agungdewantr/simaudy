@@ -3,6 +3,26 @@
 @section('title','Register')
 
 @section('content')
+<div class="form-group">
+  @if (session('status'))
+  <button id="tombolku" style="display:none;" class="but">Open Modal</button>
+   <div id="myModal" class="penghalang">
+       <div class="modal-content">
+           <span id="tutup">&times;</span>
+           <center><img src="{!! asset('assets/img/regisberhasil.svg')!!}" alt="regisberhasil" width="30%"></center>
+           <b><p><center>{{ session('status') }}</center></p></b>
+           <form action="{{route('logout')}}" method="post">
+             @csrf
+             <button type="submit" class="badge badge-primary" style="outline:none;">Logout</button>
+           </form>
+           <a href="/login" class="badge badge-primary">Kembali</a>
+       </div>
+   </div>
+    <!-- <div class="alert alert-light" role="alert">
+        {{ session('status') }}
+    </div> -->
+  @endif
+</div>
 <div class="card-body">
   <form method="POST" action="{{ route('register') }}" class="needs-validation">
     @csrf

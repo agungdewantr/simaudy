@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 use Auth;
 use App\jenispaket;
 
-class HomeController extends Controller
+class dashboardController extends Controller
 {
     /**
      * Create a new controller instance.
@@ -28,11 +28,6 @@ class HomeController extends Controller
         return view('dashboard');
     }
 
-    public function logout()
-    {
-      Auth::logout();
-      return redirect('/login');
-    }
 
     public function tentangkami()
     {

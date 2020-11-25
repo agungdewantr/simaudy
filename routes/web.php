@@ -14,10 +14,9 @@
 
 Auth::routes();
 Route::group(['middleware' => 'auth'], function(){
-  Route::get('/logout','HomeController@logout')->name('logout');
-  Route::get('/', 'HomeController@index')->name('dashboard');
+  Route::get('/', 'dashboardController@index')->name('dashboard');
   Route::get('/pilihpaket','transaksiController@getpaket');
-  Route::get('/tentangkami','HomeController@tentangkami');
+  Route::get('/tentangkami','dashboardController@tentangkami');
 });
 
 Route::group(['middleware' => ['auth','checkrole:3']], function(){
