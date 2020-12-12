@@ -2619,7 +2619,7 @@ body.layout-2 .main-sidebar {
   box-shadow: none;
   position: static;
   margin-top: 100px;
-  width: 200px; }
+  width: 100%; }
   body.layout-2 .main-sidebar .sidebar-menu li.menu-header {
     padding: 0; }
   body.layout-2 .main-sidebar .sidebar-menu li a {
@@ -2641,14 +2641,17 @@ body.layout-2 .main-sidebar {
       background-color: transparent; }
 
 body.layout-2 .main-content {
+  /* background-image: url("http://www.gala-germany.com/img/background.jpg"); */
   padding-top: 107px;
-  padding-left: 30px;
+  padding-left: 0;
+  margin-left: -13%;
+  margin-right: 0;
   padding-right: 0;
-  width: calc(100% - 200px); }
+  width: 126%; }
 
 body.layout-2 .main-footer {
-  margin-left: 230px;
-  width: calc(100% - 230px);
+  margin-left: 0;
+  width: 100%;
   padding-left: 0;
   padding-right: 0; }
 
@@ -3088,4 +3091,8 @@ body:not(.sidebar-mini) .sidebar-style-2 .sidebar-menu li.active ul.dropdown-men
 .rating input:checked ~ label:after
 {
 	opacity: 1;
+}
+
+.fancybox-custom .fancybox-skin {
+  box-shadow: 0 0 50px #222;
 }

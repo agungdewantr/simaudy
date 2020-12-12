@@ -18,8 +18,7 @@ class RedirectIfAuthenticated
     public function handle($request, Closure $next, $guard = null)
     {
         if (Auth::guard($guard)->check()) {
-          Auth::logout();
-          return redirect('/login')->with('status','Anda Berhasil Registrasi');
+          return redirect('/');
         }
 
         return $next($request);

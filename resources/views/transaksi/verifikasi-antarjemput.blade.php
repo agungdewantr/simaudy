@@ -49,8 +49,24 @@
   </div>
   <div class="form-group">
     <label for="berat_pakaian">Berat Pakaian :</label>
+    <div class="input-group">
     <input type="number" class="form-control @error('berat_pakaian') is-invalid @enderror" id="berat_pakaian" value="" name="berat_pakaian" placeholder="masukkan berat pakaian">
+      <div class="input-group-prepend">
+        <div class="input-group-text">Kg</div>
+      </div>
+  </div>
     @error('berat_pakaian')
+      <div class="invalid-feedback">{{$message}}</div>
+    @enderror
+  </div>
+  <div class="form-group">
+    <label for="jarak">Jarak :</label>
+    <div class="input-group">
+    <input type="number" class="form-control @error('jarak') is-invalid @enderror" id="jarak" value="" name="jarak" placeholder="masukkan jarak">
+    <div class="input-group-prepend">
+      <div class="input-group-text">Km</div>
+    </div>
+    @error('jarak')
       <div class="invalid-feedback">{{$message}}</div>
     @enderror
   </div>
@@ -111,11 +127,12 @@
       })
     });
     $(document).ready(function() {
-      $("#berat_pakaian, #harga").keyup(function() {
+      $("#berat_pakaian, #harga, #jarak").keyup(function() {
           var harga  = $("#harga").val();
           var berat_pakaian = $("#berat_pakaian").val();
+          var jarak = $("#jarak").val()*3000;
 
-          var jumlah_pembayaran = parseInt(harga) * parseInt(berat_pakaian);
+          var jumlah_pembayaran = parseInt(harga) * parseInt(berat_pakaian) + parseInt(jarak);
           $("#jumlah_pembayaran").val(jumlah_pembayaran);
       });
     });

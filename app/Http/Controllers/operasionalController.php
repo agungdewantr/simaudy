@@ -56,7 +56,7 @@ class operasionalController extends Controller
      */
     public function edit()
     {
-      $operasional = \App\tempatlaundry::all();
+      $operasional = \App\tempatlaundry::where('id_tempat_laundry', auth()->user()->id_tempat_laundry)->get();
       return view('statusoperasional', compact('operasional'));
     }
 

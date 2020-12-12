@@ -50,7 +50,7 @@ class pesanlaundryController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create($idtempatlaundry)
     {
       $id = auth()->user()->id;
       $lemari = DB::table('lemari')->where('status', '=' , 'Tersedia')->orderByRaw('RAND()')->take(1)->get();
@@ -60,8 +60,10 @@ class pesanlaundryController extends Controller
                                   ->take(2)
                                   ->get();
         $paket = \App\jenispaket::all();
-        $stoperasional = DB::table('tempat_laundry')->select('status_operasional')->first();
-        return view('pelanggan.pesanlaundry', compact('paket','notif','lemari','stoperasional'));
+        $stoperasional = DB::table('tempat_laundry')->select('status_operasional')
+                        ->where('id_tempat_laundry', '=', $idtempatlaundry)
+                        ->first();
+        return view('pelanggan.pesannlaundry', compact('paket','notif','lemari','stoperasional','idtempatlaundry'));
     }
 
     public function createrating($idtransaksi)
@@ -87,7 +89,7 @@ class pesanlaundryController extends Controller
           ->update([
             'status' => "Terpakai"
           ]);
-      return redirect('/laundrysekarang')->with('status', 'Layanan Antar-Jemput berhasil ditambahkan. Mohon menunggu kurir untuk menjemput pesanan anda!');
+      return redirect("/laundrysekarang/$request->id_tempat_laundry")->with('status', 'Layanan Antar-Jemput berhasil ditambahkan. Mohon menunggu kurir untuk menjemput pesanan anda!');
     }
 
     public function storerating(Request $request)

@@ -61,15 +61,41 @@ class RegisterController extends Controller
      * @param  array  $data
      * @return \App\User
      */
-    protected function create(array $data)
+    // protected function create(array $data)
+    // {
+    //   $scanKTP = $data['scan_KTP']->getClientOriginalName();
+    //   $scanKTP1 = $data['scan_KTP'];
+    //   $scanKTP1 = $scanKTP1->file('scan_KTP');
+    //   dd($scanKTP1);
+    //   $data->file("$data[scan_KTP]")->move('public/img/',$scanKTP);
+    //     return User::create([
+    //         'name' => $data['name'],
+    //         'alamat' => $data['alamat'],
+    //         'id_role' => $data['id_role'],
+    //         'no_telp' => $data['no_telp'],
+    //         'tempat_lahir' => $data['tempat_lahir'],
+    //         'tanggal_lahir' => $data['tanggal_lahir'],
+    //         'jenis_kelamin' => $data['jenis_kelamin'],
+    //         'scan_KTP' => $scanKTP,
+    //         'email' => $data['email'],
+    //         'password' => Hash::make($data['password']),
+    //     ]);
+    // }
+
+    public function store(Request $request)
     {
-        return User::create([
-            'name' => $data['name'],
-            'alamat' => $data['alamat'],
-            'id_role' => $data['id_role'],
-            'no_telp' => $data['no_telp'],
-            'email' => $data['email'],
-            'password' => Hash::make($data['password']),
-        ]);
+      DB::table('users')->insert(
+        ['id_role' =>'4',
+        'name' => $request->name,
+        'email' => $request->email,
+        'password' => Hash::make($request->password),
+        'no_telp' => $request->no_telp,
+        'alamat' => $request->alamat,
+        'tempat_lahir' => $request->tempat_lahir,
+        'tanggal_lahir' => $request->tanggal_lahir,
+        'jenis_kelamin' => $request->jenis_kelamin,
+        'scan_KTP' => 'wkwk',
+        'created_at' => date('Y-m-d h:i:s')]
+      );
     }
 }

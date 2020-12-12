@@ -15,7 +15,7 @@
   </button>
 </div>
 @endif
-<form method="post" action="{{ route('actionpesanlaundry', $idtempatlaundry) }}">
+<form method="post" action="/laundrysekarang/{{$idtempatlaundry}}">
   @csrf
   <div class="form-group">
     <label for="jenispaket">Jenis Paket</label>

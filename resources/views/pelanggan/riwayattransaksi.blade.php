@@ -1,4 +1,4 @@
-@extends('layout.layout')
+@extends('layout.layoutpelanggan')
 @section('namamenu', 'Transaksi Anda')
 @section('title','Riwayat Transaksi')
 

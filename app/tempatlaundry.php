@@ -8,5 +8,5 @@ class tempatlaundry extends Model
 {
   protected $table = 'tempat_laundry';
   protected $PrimaryKey = 'id_tempat_laundry';
-  protected $fillable = ['nama_tempat_laundry','status_operasional'];
+  protected $fillable = ['nama_tempat_laundry','status_operasional','alamat_laundry','tanggal_terbentuk'];
 }

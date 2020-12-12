@@ -1,14 +1,9 @@
 @extends('layout.layout')
 
-@section('title','Profil Laundry Maju Jaya')
+@section('title',"Profil $namalaundry->nama_tempat_laundry")
 
 @section('namamenu', 'Tentang Kami')
 @section('content')
-<p>Laundry Maju Jaya berdiri di Jember, konsep usaha laundry kiloan di Indonesia diyakini pertama kali lahir berasal dari kota pelajar ini.
-
-Simply Fresh Laundry merupakan waralaba pertama yang bergerak dibidang Bisnis Laundry Kiloan atau binatu dengan konsep cuci dan seterika per kilogram. Dikelola oleh staff ahli yang handal dan berpengalaman dibidangnya membuat Simply Fresh Laundry layak menjadi yang terdepan dalam pilihan berwirausaha.
-
-Sejak 2006 hingga kini Simply Fresh telah berkembang menjadi perusahaan dengan [highlight]258 outlet lebih tersebar di seluruh Indonesia[/highlight]. Didukung support system yang handal Simply Fresh Laundry selalu memberikan pelayanan yang terbaik dibidangnya.</p>
 <div class="card">
   <div class="card-header">
     <h4 style="text-align: center;">Pilihan Paket</h4>
