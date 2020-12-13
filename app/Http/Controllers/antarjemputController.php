@@ -77,7 +77,7 @@ class antarjemputController extends Controller
 
     public function getpaket()
     {
-      $paket = \App\jenispaket::all();
+      $paket = jenispaket::all();
       return response()->json($paket);
     }
 

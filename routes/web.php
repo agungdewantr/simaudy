@@ -10,13 +10,15 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
-
-
+Route::get('/', function () {
+    return view('landingpage');
+});
+Route::get('/landingpage','dashboardController@landingpage')->name('landingpage');
 Auth::routes();
 Route::post('/register','registerController@store')->name('registrasi');
 Route::post('/registerlaundry','registerController@registerlaundry')->name('registrasilaundry');
 Route::group(['middleware' => 'auth'], function(){
-  Route::get('/', 'dashboardController@index')->name('dashboard');
+  Route::get('/dashboard', 'dashboardController@index')->name('dashboard');
   Route::get('/pilihpaket','transaksiController@getpaket');
   Route::get('/tentangkami','dashboardController@tentangkami');
   Route::get('/profile','dashboardController@profile')->name('profile');

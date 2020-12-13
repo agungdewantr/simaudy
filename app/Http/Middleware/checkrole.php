@@ -19,7 +19,7 @@ class checkrole
           return $next($request);
         }
 
-        return redirect('/');
+        return redirect('/dashboard');
 
     }
 }

@@ -62,6 +62,7 @@
   @endsection
 
   @section('notif')
+  <ul>
   <li class="dropdown dropdown-list-toggle"><a href="#" data-toggle="dropdown" class="nav-link notification-toggle nav-link-lg beep"><i class="far fa-bell"></i></a>
     <div class="dropdown-menu dropdown-list dropdown-menu-right">
       <div class="dropdown-header">Pesanan Laundry Anda
@@ -97,6 +98,7 @@
       </div>
     </div>
   </li>
+    </ul>
   @else
   <button id="tombolku" style="display:none;" class="but">Open Modal</button>
    <div id="myModal" class="penghalang">
@@ -108,7 +110,7 @@
            <p class="d-inline text-center"><b>Maaf tempat laundry ini sedang tutup</b></p>
            </div>
            <div class="row justify-content-center">
-             <a href="/" class="d-inline badge badge-primary" style="width:20%;">Ya</a>
+             <a href="/dashboard" class="d-inline badge badge-primary" style="width:20%;">Ya</a>
            </div>
        </div>
    </div>

@@ -21,6 +21,11 @@ class dashboardController extends Controller
         $this->middleware('auth');
     }
 
+    public function landingpage(){
+      $tempat_laundry = tempatlaundry::all();
+      return view('landingpage', compact('tempat_laundry'));
+    }
+
     /**
      * Show the application dashboard.
      *

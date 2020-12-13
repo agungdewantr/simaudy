@@ -63,7 +63,7 @@
           </div>
 
           <ul class="sidebar-menu">
-            <li><a class="nav-link" href="/"><i class="fas fa-th-large"></i>Dashboard</a></li>
+            <li><a class="nav-link" href="/dashboard"><i class="fas fa-th-large"></i>Dashboard</a></li>
             @if(auth()->user()->id_role == '3')
             <li><a class="nav-link" href="/transaksi"><i class="fas fa-th-large"></i>Transaksi</a></li>
             <li><a class="nav-link" href="/antarjemput"><i class="fas fa-th-large"></i>Antar Jemput</a></li>
