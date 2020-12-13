@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 09, 2020 at 03:34 AM
+-- Generation Time: Dec 13, 2020 at 04:48 PM
 -- Server version: 10.4.14-MariaDB
 -- PHP Version: 7.4.10
 
@@ -159,8 +159,8 @@ CREATE TABLE `tempat_laundry` (
 --
 
 INSERT INTO `tempat_laundry` (`id_tempat_laundry`, `nama_tempat_laundry`, `status_operasional`, `alamat_laundry`, `tanggal_terbentuk`, `created_at`, `updated_at`) VALUES
-(7, 'murah laundry', 'Buka', 'Jl Mastrip', '2020-12-22', '2020-12-04 22:27:34', NULL),
-(8, 'Maju Jaya', 'Tutup', 'Jl Jawa', '2020-04-23', '2020-12-08 03:57:01', '2020-12-07 21:22:44');
+(12, 'Maju jaya', 'Buka', 'Jl Kalimantan 11', '2020-12-27', '2020-12-12 05:05:34', '2020-12-12 05:05:51'),
+(13, 'Tidak Gratis', 'Tutup', 'Jl Jawa 6 a', '2020-12-29', '2020-12-12 05:56:53', '2020-12-12 05:57:48');
 
 -- --------------------------------------------------------
 
@@ -216,11 +216,13 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `id_role`, `id_tempat_laundry`, `name`, `email`, `password`, `no_telp`, `alamat`, `tempat_lahir`, `tanggal_lahir`, `jenis_kelamin`, `scan_KTP`, `status`, `remember_token`, `created_at`, `updated_at`) VALUES
-(38, 4, NULL, 'Pelanggan', 'pelanggan@gmail.com', '$2y$10$WHkNAjU4hFlMNpYxfrZp6OMRbpm7wSxjQlQ9PQ0Tyla0irjnA.6Da', '000000000', 'Jl Jawa', 'bondowoso', '2020-12-25', 'Laki-laki', '2020-12-09-02-11-57WhatsApp Image 2020-11-29 at 22.13.23.jpeg', 'Verifikasi', NULL, '2020-12-04 21:22:30', '2020-12-08 19:28:14'),
-(43, 2, 8, 'Pemilik', 'pemilik@gmail.com', '$2y$10$slbhieH12F4y3KHkBW0Y0u0cWPuUDJFfNhlswNr7lWDkPVXgWXtje', '08762172165', 'Jl Jawa 99', 'Jember', '1992-10-20', 'Laki-laki', '2020-12-09-02-11-57WhatsApp Image 2020-11-29 at 22.13.23.jpeg', 'Verifikasi', NULL, '2020-12-04 22:23:14', '2020-12-08 17:58:38'),
-(45, 2, 7, 'Agung', 'agung@gmail.com', '$2y$10$AtKquCh7ia9mHcEq19s7Du4x28WWTBACN4NXHARXn5IytcBpxR6k6', '07383826316', 'Jl Kalimantan', 'bondowoso', '2020-12-29', 'Laki-laki', '2020-12-09-02-11-57WhatsApp Image 2020-11-29 at 22.13.23.jpeg', 'Null', NULL, '2020-12-04 22:27:34', '2020-12-07 06:48:05'),
+(38, 4, NULL, 'Pelanggan', 'pelanggan@gmail.com', '$2y$10$WHkNAjU4hFlMNpYxfrZp6OMRbpm7wSxjQlQ9PQ0Tyla0irjnA.6Da', '000000000', 'Jl Jawa', 'bondowoso', '2020-12-25', 'Laki-laki', '2020-12-09-02-11-57WhatsApp Image 2020-11-29 at 22.13.23.jpeg', 'Null', NULL, '2020-12-04 21:22:30', '2020-12-08 19:28:14'),
 (46, 1, NULL, 'Admin Simaudy', 'admin@gmail.com', '$2y$10$xW/RgOHDDbhGOv4oPEKBO.z2n04dyOyjrw7fjRkyHf0jrgfIc52BK', '087757660989', 'Jl. Simaudy', 'Secret', '2020-12-23', 'Laki-laki', '2020-12-09-02-11-57WhatsApp Image 2020-11-29 at 22.13.23.jpeg', NULL, NULL, '2020-12-06 01:45:34', '2020-12-07 20:17:29'),
-(47, 3, 8, 'Karyawan', 'karyawan@gmail.com', '$2y$10$e6FFCDb6QHjuKMkmFEXooeYC/F5OXMN3PFL6mn8TU2tOz27hBZ.nq', '011111', 'Dimana', 'Rahasia', '2020-12-03', 'Laki-laki', '2020-12-09-02-11-57WhatsApp Image 2020-11-29 at 22.13.23.jpeg', 'Verifikasi', NULL, '2020-12-06 01:50:00', NULL);
+(54, 2, 12, 'Pemilik', 'pemilik@gmail.com', '$2y$10$2LReVk6wOsj2P6n0QGEoc.Oq1vsGmpbyAW8nRwAbFL6RibV9LfN/a', '909090', 'Jl Jawa', 'Bwi', '2020-12-01', 'Laki-laki', '2020-12-12-12-05-34Capture.PNG', 'Null', NULL, '2020-12-12 05:05:34', NULL),
+(55, 3, 12, 'Karyawan', 'karyawan@gmail.com', '$2y$10$9.NLD7CUwxoOw1fo7KjgXeXj8e0G09sA5d4YL2CGjgualmG/c9r1.', '818181', 'Jl Jawa 9', 'bws', '2021-01-05', 'Perempuan', '2020-12-12-12-07-08—Pngtree—happy eid al-adha mubarak muslim_5432010.png', NULL, NULL, '2020-12-12 05:07:08', NULL),
+(57, 3, 12, 'andika', 'andika@gmail.com', '$2y$10$gDvtaF3emG7UiPYrFh8SeeBbmv02SIQwu1964mFuPN5FGzg0mxenW', '1111', 'jl kalimantan', 'bws', '2020-12-29', 'Laki-laki', '2020-12-12-12-53-59Capture.PNG', NULL, NULL, '2020-12-12 05:53:59', NULL),
+(58, 2, 13, 'Pemilik 2', 'pemilik2@gmail.com', '$2y$10$hxdBAyyyfjM03nLVmS424uLB.V21lT.tyOe2l/yoWr0qTlTgAOjai', '1112', 'Jl Mana Aja', 'bws', '2020-12-31', 'Laki-laki', '2020-12-12-12-56-53erd_SIMAUDY_SPRINT3.PNG', 'Null', NULL, '2020-12-12 05:56:53', NULL),
+(59, 3, 13, 'Aini', 'aini@gmail.com', '$2y$10$/o4Uj9VILjnF86//ZpiAu.03M6KkN3md1uki.RfK/FTglCRcPQ.sW', '777', 'Jl Kal 1', 'jbr', '2021-01-06', 'Laki-laki', '2020-12-12-12-59-08erd_SIMAUDY_SPRINT3.PNG', NULL, NULL, '2020-12-12 05:59:08', NULL);
 
 --
 -- Indexes for dumped tables
@@ -313,7 +315,7 @@ ALTER TABLE `role`
 -- AUTO_INCREMENT for table `tempat_laundry`
 --
 ALTER TABLE `tempat_laundry`
-  MODIFY `id_tempat_laundry` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `id_tempat_laundry` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
 -- AUTO_INCREMENT for table `transaksi`
@@ -325,7 +327,7 @@ ALTER TABLE `transaksi`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=54;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=60;
 
 --
 -- Constraints for dumped tables
@@ -344,8 +346,7 @@ ALTER TABLE `transaksi`
 -- Constraints for table `users`
 --
 ALTER TABLE `users`
-  ADD CONSTRAINT `users_id_role_foreign` FOREIGN KEY (`id_role`) REFERENCES `role` (`id_role`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `users_id_tempatlolaundry_foreign` FOREIGN KEY (`id_tempat_laundry`) REFERENCES `tempat_laundry` (`id_tempat_laundry`) ON DELETE SET NULL ON UPDATE SET NULL;
+  ADD CONSTRAINT `users_id_role_foreign` FOREIGN KEY (`id_role`) REFERENCES `role` (`id_role`) ON DELETE CASCADE ON UPDATE CASCADE;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
