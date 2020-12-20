@@ -154,10 +154,10 @@
   <script>
   $('#myModal').modal('show');
   </script>
-  <!-- <script type="text/javascript">
+  <script type="text/javascript">
     $(document).ready(function() {
         $('.but').trigger('click');
     })
-</script> -->
+</script>
 </body>
 </html>

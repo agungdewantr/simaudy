@@ -27,7 +27,7 @@
   <div class="form-group">
     <label for="idusers">ID Pelanggan</label>
     <select name="id_users" class="form-control form-control-lg">
-      <option value="17">--Bukan pelanggan Terdaftar--</option>
+      <option value="61">--Bukan pelanggan Terdaftar--</option>
       @foreach($user as $usr)
         <option value="{{$usr->id}}">{{$usr->id}}</option>
       @endforeach
@@ -51,7 +51,10 @@
   @foreach($lemari as $lm)
   <input type="hidden" name="idlemari" id="idlemari" value="{{$lm->idlemari}}">
   @endforeach
-  <input type="hidden" name="id_tempat_laundry" id="id_tempat_laundry" value="1">
+  <input type="text" name="id_tempat_laundry" id="id_tempat_laundry" value="{{$idtempatlaundry}}" class="form-control @error('id_tempat_laundry') is-invalid @enderror">
+  @error('id_tempat_laundry')
+    <div class="invalid-feedback">{{$message}}</div>
+  @enderror
   <input type="hidden" name="status_pengantaran" id="status_pengantaran" value="">
     <div class="form-group">
       <label for="berat_pakaian">Berat Pakaian</label>

@@ -40,9 +40,10 @@ class transaksiController extends Controller
      */
     public function create()
     {
+        $idtempatlaundry = auth()->user()->id_tempat_laundry;
         $lemari = DB::table('lemari')->where('status', '=' , 'Tersedia')->orderByRaw('RAND()')->take(1)->get();
         $user = DB::table('users')->where('id_role', '=' ,4)->get();
-        return view('transaksi.transaksi-tambah', compact('user','lemari'));
+        return view('transaksi.transaksi-tambah', compact('user','lemari','idtempatlaundry'));
     }
 
     public function getpaket()

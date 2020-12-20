@@ -32,6 +32,7 @@
         <div data-crop-image="285">
           <div class=" ">
             <a href="/tentanglaundry/{{$cari->id_tempat_laundry}}"><i class="fas fa-info-circle"></i></a><h5 class="text-primary" style="text-decoration : none;">{{$cari->nama_tempat_laundry}}</h5>
+            aaa
           </div>
           <img alt="image" src="../assets/img/example-image.jpg" class="img-fluid">
         </div>
@@ -85,7 +86,7 @@
       <a href="../assets/img/example-image.jpg" class="chocolat-image" title="Just an example">
         <div data-crop-image="285">
           <div class=" ">
-            <h5 class="text-primary" style="text-decoration : none;">{{$tl->nama_tempat_laundry}}</h5>
+            <a href="/tentanglaundry/{{$tl->id_tempat_laundry}}"><i class="fas fa-info-circle"></i></a><h5 class="text-primary" style="text-decoration : none;">{{$tl->nama_tempat_laundry}}</h5>
           </div>
           <img alt="image" src="../assets/img/example-image.jpg" class="img-fluid">
         </div>
