@@ -63,7 +63,7 @@ class adminController extends Controller
     public function detailtempatlaundry($id){
       $datalaundry = DB::table('tempat_laundry')
                     ->join('users', 'users.id_tempat_laundry', '=', 'tempat_laundry.id_tempat_laundry')
-                    ->select('users.name','users.no_telp','tempat_laundry.id_tempat_laundry','tempat_laundry.nama_tempat_laundry','tempat_laundry.status_operasional','tempat_laundry.alamat_laundry','tempat_laundry.tanggal_terbentuk')
+                    ->select('users.name','users.no_telp','tempat_laundry.id_tempat_laundry','tempat_laundry.nama_tempat_laundry','tempat_laundry.status_operasional','users.status','tempat_laundry.alamat_laundry','tempat_laundry.tanggal_terbentuk')
                     ->where('users.id_role','=', 2)
                     ->where('tempat_laundry.id_tempat_laundry', '=', $id)
                     ->get();

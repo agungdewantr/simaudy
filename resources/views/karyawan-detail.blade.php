@@ -15,7 +15,7 @@
     <tr><td>Tempat, tanggal Lahir</td><td>:</td><td>{{$dk->tempat_lahir}}, {{ Carbon\Carbon::parse($dk->tanggal_lahir)->format("d-m-Y")  }}</td></tr>
     <tr><td>Jenis Kelamin</td><td>:</td><td>{{$dk->jenis_kelamin}}</td></tr>
     <tr><td>Status</td><td>:</td><td>
-      @if($dk->email_verified_at == NULL)
+      @if($dk->status == NULL)
         Belum Terverifikasi
       @else
         Terverifikasi

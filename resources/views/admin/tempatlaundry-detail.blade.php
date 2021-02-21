@@ -15,7 +15,11 @@
     <tr><td>Nama Pemilik</td><td>:</td><td>{{$dl->name}}</td></tr>
     <tr><td>No Telp</td><td>:</td><td>{{$dl->no_telp}}</td></tr>
     <tr><td>Status</td><td>:</td><td>
-
+      @if($dl->status == NULL)
+        Belum Terverifikasi
+      @else
+        Terverifikasi
+      @endif
     </td></tr>
     </tbody>
   </table>

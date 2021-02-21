@@ -65,6 +65,7 @@ class pemilikController extends Controller
         'tanggal_lahir' => $request->tanggal_lahir,
         'jenis_kelamin' => $request->jenis_kelamin,
         'scan_KTP' => $scanKTP,
+        'status' => 'Verifikasi',
         'created_at' => date('Y-m-d h:i:s')]
       );
 

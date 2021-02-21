@@ -11,7 +11,7 @@
          <h4 class="text-center">SIMAUDY</h4>
          <p class="text-warning text-center"><b>{{ session('status') }}</b></p>
          <div class="row justify-content-center">
-           <a href="/" class="d-inline badge badge-primary" style="width:20%;">Ya</a>
+           <a href="/dashboard" class="d-inline badge badge-primary" style="width:20%;">Ya</a>
          </div>
      </div>
  </div>

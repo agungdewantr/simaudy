@@ -51,7 +51,7 @@
   @foreach($lemari as $lm)
   <input type="hidden" name="idlemari" id="idlemari" value="{{$lm->idlemari}}">
   @endforeach
-  <input type="text" name="id_tempat_laundry" id="id_tempat_laundry" value="{{$idtempatlaundry}}" class="form-control @error('id_tempat_laundry') is-invalid @enderror">
+  <input type="hidden" name="id_tempat_laundry" id="id_tempat_laundry" value="{{$idtempatlaundry}}" class="form-control @error('id_tempat_laundry') is-invalid @enderror">
   @error('id_tempat_laundry')
     <div class="invalid-feedback">{{$message}}</div>
   @enderror

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 13, 2020 at 04:48 PM
+-- Generation Time: Dec 21, 2020 at 04:42 AM
 -- Server version: 10.4.14-MariaDB
 -- PHP Version: 7.4.10
 
@@ -62,18 +62,22 @@ CREATE TABLE `lemari` (
 --
 
 INSERT INTO `lemari` (`idlemari`, `status`, `created_at`, `updated_at`) VALUES
-(1, 'Tersedia', '2020-11-20 02:34:22', '2020-12-06 01:23:16'),
-(2, 'Terpakai', '2020-11-20 02:34:22', '2020-12-06 02:06:01'),
-(3, 'Tersedia', '2020-11-20 05:37:39', '2020-12-06 00:54:06'),
-(4, 'Terpakai', '2020-11-19 20:58:27', '2020-12-06 02:20:00'),
-(5, 'Tersedia', '2020-11-22 22:08:05', '2020-12-06 01:13:51'),
-(6, 'Terpakai', '2020-11-22 22:08:11', '2020-12-06 02:19:51'),
-(7, 'Tersedia', '2020-11-22 22:08:18', '2020-12-06 02:01:14'),
-(8, 'Terpakai', '2020-11-22 22:41:31', '2020-12-06 02:19:40'),
-(9, 'Tersedia', '2020-11-22 22:41:37', '2020-12-06 01:11:47'),
-(10, 'Tersedia', '2020-11-22 22:41:43', '2020-12-06 01:27:12'),
-(11, 'Tersedia', '2020-11-22 22:41:51', '2020-12-06 01:09:01'),
-(12, 'Tersedia', '2020-11-24 01:11:06', '2020-12-06 02:04:37');
+(1, 'Tersedia', '2020-11-20 02:34:22', '2020-12-20 20:40:40'),
+(2, 'Terpakai', '2020-11-20 02:34:22', '2020-12-20 11:54:56'),
+(3, 'Tersedia', '2020-11-20 05:37:39', '2020-12-13 22:33:47'),
+(4, 'Terpakai', '2020-11-19 20:58:27', '2020-12-14 06:17:49'),
+(5, 'Tersedia', '2020-11-22 22:08:05', '2020-12-13 22:35:16'),
+(6, 'Terpakai', '2020-11-22 22:08:11', '2020-12-14 06:18:36'),
+(7, 'Tersedia', '2020-11-22 22:08:18', '2020-12-13 22:36:56'),
+(8, 'Tersedia', '2020-11-22 22:41:31', '2020-12-06 02:19:40'),
+(9, 'Tersedia', '2020-11-22 22:41:37', '2020-12-13 22:40:10'),
+(10, 'Tersedia', '2020-11-22 22:41:43', '2020-12-13 22:34:08'),
+(11, 'Tersedia', '2020-11-22 22:41:51', '2020-12-13 22:44:23'),
+(12, 'Tersedia', '2020-11-24 01:11:06', '2020-12-13 10:42:44'),
+(13, 'Terpakai', '2020-12-13 22:01:54', '2020-12-20 08:08:06'),
+(14, 'Terpakai', '2020-12-19 23:54:26', '2020-12-20 11:58:11'),
+(15, 'Tersedia', '2020-12-20 20:40:21', NULL),
+(16, 'Tersedia', '2020-12-20 20:40:27', NULL);
 
 -- --------------------------------------------------------
 
@@ -114,6 +118,16 @@ CREATE TABLE `password_resets` (
   `token` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `password_resets`
+--
+
+INSERT INTO `password_resets` (`email`, `token`, `created_at`) VALUES
+('pelanggan@gmail.com', '$2y$10$NlZodoUwYDvdRmqA0CNsDeRGd6pE6WxQssYvEQmFB5fKWciecPBLa', '2020-12-18 09:36:50'),
+('aini@gmail.com', '$2y$10$10vkjwhFhlFy7BwxKXGDcOtfvgkArLq53GKbiSO9d8b3eXzOlkF2q', '2020-12-18 09:38:27'),
+('admin@gmail.com', '$2y$10$ZpSSFbG.5xU9Ap2WueSHjOBhx6Q9RnOheha6i9EP117XIPQerIJRa', '2020-12-18 09:54:13'),
+('agungdewan709@gmail.com', '$2y$10$bzFrChkJLwlvhz.iUfcTI.9G/i7R9Wa65eBMdCWOyH7pQtgs4EgmW', '2020-12-20 11:59:59');
 
 -- --------------------------------------------------------
 
@@ -159,8 +173,10 @@ CREATE TABLE `tempat_laundry` (
 --
 
 INSERT INTO `tempat_laundry` (`id_tempat_laundry`, `nama_tempat_laundry`, `status_operasional`, `alamat_laundry`, `tanggal_terbentuk`, `created_at`, `updated_at`) VALUES
-(12, 'Maju jaya', 'Buka', 'Jl Kalimantan 11', '2020-12-27', '2020-12-12 05:05:34', '2020-12-12 05:05:51'),
-(13, 'Tidak Gratis', 'Tutup', 'Jl Jawa 6 a', '2020-12-29', '2020-12-12 05:56:53', '2020-12-12 05:57:48');
+(12, 'Maju jaya', 'Buka', 'Jl Kalimantan 11', '2020-12-27', '2020-12-12 05:05:34', '2020-12-20 20:23:51'),
+(13, 'Simply Fresh', 'Buka', 'Mastrip Square Ruko B', '2020-12-29', '2020-12-12 05:56:53', '2020-12-12 05:57:48'),
+(14, 'Laundry Kilat Ry', 'Tutup', 'Jl  Tidar no 04', '2020-12-14', '2020-12-19 23:41:10', NULL),
+(15, 'Laundry Morowangi', 'Tutup', 'Jl Perum Bumi Tegal Besar', '2020-12-02', '2020-12-19 23:51:41', NULL);
 
 -- --------------------------------------------------------
 
@@ -185,6 +201,27 @@ CREATE TABLE `transaksi` (
   `rating` int(11) DEFAULT NULL,
   `deskripsi_penilaian` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `transaksi`
+--
+
+INSERT INTO `transaksi` (`id_transaksi`, `id_users`, `id_paket`, `berat_pakaian`, `jumlah_pembayaran`, `created_at`, `updated_at`, `jenistransaksi`, `status`, `alamat`, `idlemari`, `id_tempat_laundry`, `status_pengantaran`, `rating`, `deskripsi_penilaian`) VALUES
+(177, 38, 1, 2, 30000, '2020-12-13 21:38:30', '2020-12-13 21:49:47', 'online', 'Terverifikasi', 'Jl Jawa', 3, 12, 'Pakaian telah diterima/diambil', NULL, NULL),
+(178, 38, 1, 0, 0, '2020-12-13 21:46:09', '2020-12-20 20:40:40', 'online', 'Ditolak', 'Jl Jawa', 1, 12, NULL, NULL, NULL),
+(182, 61, 1, 1, 12000, '2020-12-13 22:33:47', '2020-12-13 22:33:47', 'offline', NULL, NULL, 3, 12, NULL, NULL, NULL),
+(183, 61, 1, 1, 12000, '2020-12-13 22:34:08', '2020-12-13 22:34:08', 'offline', NULL, NULL, 10, 12, NULL, NULL, NULL),
+(184, 61, 1, 1, 12000, '2020-12-13 22:35:16', '2020-12-13 22:35:16', 'offline', NULL, NULL, 5, 12, NULL, NULL, NULL),
+(185, 61, 2, 9, 72000, '2020-12-13 22:36:29', '2020-12-13 22:36:29', 'offline', NULL, NULL, 7, 12, NULL, NULL, NULL),
+(186, 61, 2, 9, 72000, '2020-12-13 22:36:56', '2020-12-13 22:36:56', 'offline', NULL, NULL, 7, 12, NULL, NULL, NULL),
+(187, 61, 2, 1, 8000, '2020-12-13 22:39:11', '2020-12-13 22:39:11', 'offline', NULL, NULL, 13, 12, NULL, NULL, NULL),
+(188, 61, 2, 1, 8000, '2020-12-13 22:40:10', '2020-12-13 22:40:10', 'offline', NULL, NULL, 9, 12, NULL, NULL, NULL),
+(189, 61, 2, 1, 8000, '2020-12-13 22:44:23', '2020-12-13 22:44:23', 'offline', NULL, NULL, 11, 12, NULL, NULL, NULL),
+(190, 38, 1, 2, 27000, '2020-12-14 06:17:49', '2020-12-20 20:40:58', 'online', 'Terverifikasi', 'Jl Jawa', 4, 13, NULL, NULL, NULL),
+(191, 38, 1, 0, 0, '2020-12-14 06:18:36', '2020-12-14 06:18:36', 'online', 'Belum terverifikasi', 'Jl Jawaaa', 6, 13, NULL, NULL, NULL),
+(192, 61, 2, 8, 64000, '2020-12-20 08:08:06', '2020-12-20 08:08:06', 'offline', NULL, NULL, 13, 12, NULL, NULL, NULL),
+(193, 61, 2, 2, 16000, '2020-12-20 11:54:56', '2020-12-20 11:55:18', 'offline', NULL, NULL, 2, 12, 'Pakaian telah diterima/diambil', NULL, NULL),
+(194, 38, 1, 0, 0, '2020-12-20 11:58:11', '2020-12-20 11:58:11', 'online', 'Belum terverifikasi', 'Jl Jawa', 14, 13, NULL, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -216,13 +253,19 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `id_role`, `id_tempat_laundry`, `name`, `email`, `password`, `no_telp`, `alamat`, `tempat_lahir`, `tanggal_lahir`, `jenis_kelamin`, `scan_KTP`, `status`, `remember_token`, `created_at`, `updated_at`) VALUES
-(38, 4, NULL, 'Pelanggan', 'pelanggan@gmail.com', '$2y$10$WHkNAjU4hFlMNpYxfrZp6OMRbpm7wSxjQlQ9PQ0Tyla0irjnA.6Da', '000000000', 'Jl Jawa', 'bondowoso', '2020-12-25', 'Laki-laki', '2020-12-09-02-11-57WhatsApp Image 2020-11-29 at 22.13.23.jpeg', 'Null', NULL, '2020-12-04 21:22:30', '2020-12-08 19:28:14'),
+(38, 4, NULL, 'Pelanggan', 'pelanggan@gmail.com', '$2y$10$WHkNAjU4hFlMNpYxfrZp6OMRbpm7wSxjQlQ9PQ0Tyla0irjnA.6Da', '000000000', 'Jl Jawa', 'bondowoso', '2020-12-25', 'Laki-laki', '2020-12-09-02-11-57WhatsApp Image 2020-11-29 at 22.13.23.jpeg', 'Verifikasi', NULL, '2020-12-04 21:22:30', '2020-12-13 22:00:04'),
 (46, 1, NULL, 'Admin Simaudy', 'admin@gmail.com', '$2y$10$xW/RgOHDDbhGOv4oPEKBO.z2n04dyOyjrw7fjRkyHf0jrgfIc52BK', '087757660989', 'Jl. Simaudy', 'Secret', '2020-12-23', 'Laki-laki', '2020-12-09-02-11-57WhatsApp Image 2020-11-29 at 22.13.23.jpeg', NULL, NULL, '2020-12-06 01:45:34', '2020-12-07 20:17:29'),
 (54, 2, 12, 'Pemilik', 'pemilik@gmail.com', '$2y$10$2LReVk6wOsj2P6n0QGEoc.Oq1vsGmpbyAW8nRwAbFL6RibV9LfN/a', '909090', 'Jl Jawa', 'Bwi', '2020-12-01', 'Laki-laki', '2020-12-12-12-05-34Capture.PNG', 'Null', NULL, '2020-12-12 05:05:34', NULL),
-(55, 3, 12, 'Karyawan', 'karyawan@gmail.com', '$2y$10$9.NLD7CUwxoOw1fo7KjgXeXj8e0G09sA5d4YL2CGjgualmG/c9r1.', '818181', 'Jl Jawa 9', 'bws', '2021-01-05', 'Perempuan', '2020-12-12-12-07-08—Pngtree—happy eid al-adha mubarak muslim_5432010.png', NULL, NULL, '2020-12-12 05:07:08', NULL),
-(57, 3, 12, 'andika', 'andika@gmail.com', '$2y$10$gDvtaF3emG7UiPYrFh8SeeBbmv02SIQwu1964mFuPN5FGzg0mxenW', '1111', 'jl kalimantan', 'bws', '2020-12-29', 'Laki-laki', '2020-12-12-12-53-59Capture.PNG', NULL, NULL, '2020-12-12 05:53:59', NULL),
+(55, 3, 12, 'Karyawan', 'karyawan@gmail.com', '$2y$10$9.NLD7CUwxoOw1fo7KjgXeXj8e0G09sA5d4YL2CGjgualmG/c9r1.', '818181', 'Jl Jawa 9', 'bws', '2021-01-05', 'Perempuan', '2020-12-12-12-07-08—Pngtree—happy eid al-adha mubarak muslim_5432010.png', 'Verifikasi', NULL, '2020-12-12 05:07:08', NULL),
+(57, 3, 12, 'andika', 'andika@gmail.com', '$2y$10$gDvtaF3emG7UiPYrFh8SeeBbmv02SIQwu1964mFuPN5FGzg0mxenW', '1111', 'jl kalimantan', 'bws', '2020-12-29', 'Laki-laki', '2020-12-12-12-53-59Capture.PNG', 'Verifikasi', NULL, '2020-12-12 05:53:59', NULL),
 (58, 2, 13, 'Pemilik 2', 'pemilik2@gmail.com', '$2y$10$hxdBAyyyfjM03nLVmS424uLB.V21lT.tyOe2l/yoWr0qTlTgAOjai', '1112', 'Jl Mana Aja', 'bws', '2020-12-31', 'Laki-laki', '2020-12-12-12-56-53erd_SIMAUDY_SPRINT3.PNG', 'Null', NULL, '2020-12-12 05:56:53', NULL),
-(59, 3, 13, 'Aini', 'aini@gmail.com', '$2y$10$/o4Uj9VILjnF86//ZpiAu.03M6KkN3md1uki.RfK/FTglCRcPQ.sW', '777', 'Jl Kal 1', 'jbr', '2021-01-06', 'Laki-laki', '2020-12-12-12-59-08erd_SIMAUDY_SPRINT3.PNG', NULL, NULL, '2020-12-12 05:59:08', NULL);
+(59, 3, 13, 'a', 'agungdewan709@gmail.com', '$2y$10$Hz60eKz58jGn8tB11YhVEOF5xvptmjEvORMeqT7cNf4XoMIMcg5L.', '777', 'Jl Kal 1', 'jbr', '2021-01-06', 'Laki-laki', '2020-12-12-12-59-08erd_SIMAUDY_SPRINT3.PNG', 'Verifikasi', 'tD0j4iivtOZLwRe6OmWAVFBCUj4O3pgwSMvaGLkDKdnsVRt8TNhsm9LYWepF', '2020-12-12 05:59:08', '2020-12-18 10:46:59'),
+(61, 4, NULL, 'Bukan Pelanggan Terdaftar', 'anonym@gmail.com', '$2y$10$xrxmXvsew7dTqBmfzSNTj.p9L5FM/O8zwNEhHVN4h/UqyoyOdut/6', '1111', 'Jl Jawa', 'bondowoso', '2021-01-05', 'Laki-laki', '2020-12-14-04-59-00Screenshot_2020-07-28-13-43-27-77.jpg', NULL, NULL, '2020-12-13 21:59:00', NULL),
+(62, 2, 14, 'Doni Ahmad', 'donia@gmail.com', '$2y$10$CPdMCZPHiEzwhssaBYMIrOklqHZuPbkLadbrqEe7itF3K.dD784Tu', '012812617', 'Jl Patrang', 'bondowoso', '2020-12-14', 'Laki-laki', '2020-12-20-06-41-10Capture.PNG', 'Null', NULL, '2020-12-19 23:41:10', NULL),
+(63, 4, NULL, 'Susi Puji', 'susipuji@gmail.com', '$2y$10$wJv5b9X6isxJYcOcqyueTe8fIwF0aXP004BbzAXvqf3qFhIMiypRO', '089765241', 'Jl Jawa', 'Jember', '2020-12-14', 'Perempuan', '2020-12-20-06-43-04Screenshot_2020-07-28-13-43-27-77.jpg', 'Verifikasi', NULL, '2020-12-19 23:43:04', '2020-12-20 20:05:43'),
+(65, 2, 15, 'Yuda', 'yuda@gmail.com', '$2y$10$O0aE.gzDPy03rssMUvRxQeu9Z5VmALpYOM5hVR7pA3qA4r0DgD1ri', '087652164', 'Jl Patrang', 'Bondowoso', '2021-01-05', 'Laki-laki', '2020-12-20-06-51-41aa.PNG', 'Null', NULL, '2020-12-19 23:51:41', NULL),
+(66, 3, 12, 'Mirna', 'mirna@gmail.com', '$2y$10$Hc6cytRivdOb931nezSTtO41Gi.AiRkIAScUVXBQ9dYKVnUDzJSnq', '087654321', 'Jl Jawa', 'Jember', '1998-10-10', 'Perempuan', '2020-12-21-03-25-14Capture.PNG', 'Verifikasi', NULL, '2020-12-20 20:25:15', NULL),
+(67, 3, 12, 'Joni', 'joni@gmail.com', '$2y$10$oskrW06cGuAcGMKE5iC.0.alysRmlnGdCWjd3FPu0cIWTBXy3KA.C', '1', 'Jl Jawa', 'bondowoso', '1996-10-09', 'Laki-laki', '2020-12-21-03-37-31Capture.PNG', 'Verifikasi', NULL, '2020-12-20 20:37:32', NULL);
 
 --
 -- Indexes for dumped tables
@@ -297,7 +340,7 @@ ALTER TABLE `jenis_paket`
 -- AUTO_INCREMENT for table `lemari`
 --
 ALTER TABLE `lemari`
-  MODIFY `idlemari` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `idlemari` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 
 --
 -- AUTO_INCREMENT for table `migrations`
@@ -315,19 +358,19 @@ ALTER TABLE `role`
 -- AUTO_INCREMENT for table `tempat_laundry`
 --
 ALTER TABLE `tempat_laundry`
-  MODIFY `id_tempat_laundry` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+  MODIFY `id_tempat_laundry` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 
 --
 -- AUTO_INCREMENT for table `transaksi`
 --
 ALTER TABLE `transaksi`
-  MODIFY `id_transaksi` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=176;
+  MODIFY `id_transaksi` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=195;
 
 --
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=60;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=68;
 
 --
 -- Constraints for dumped tables

@@ -68,6 +68,7 @@
             <li><a class="nav-link" href="/transaksi"><i class="fas fa-th-large"></i>Transaksi</a></li>
             <li><a class="nav-link" href="/antarjemput"><i class="fas fa-th-large"></i>Antar Jemput</a></li>
             <li><a class="nav-link" href="/kelolanolemari"><i class="fas fa-th-large"></i>Kelola Nomor Lemari</a></li>
+            <li><a class="nav-link" href="/tentangkami"><i class="fas fa-th-large"></i>Tentang Kami</a></li>
             @endif
 
             @if(auth()->user()->id_role == '4')
@@ -80,13 +81,13 @@
             <li><a class="nav-link" href="/rekaptransaksi"><i class="fas fa-th-large"></i>Rekap Transaksi</a></li>
             <li><a class="nav-link" href="/statusoperasional"><i class="fas fa-th-large"></i>Status Operasional</a></li>
             <li><a class="nav-link" href="/manajemenkaryawan"><i class="fas fa-th-large"></i>Manajemen Karyawan</a></li>
+            <li><a class="nav-link" href="/tentangkami"><i class="fas fa-th-large"></i>Tentang Kami</a></li>
             @endif
 
             @if(auth()->user()->id_role == '1')
             <li><a class="nav-link" href="/manajemenpelanggan"><i class="fas fa-th-large"></i>Manajemen Pelanggan</a></li>
             <li><a class="nav-link" href="/manajemenlaundry"><i class="fas fa-th-large"></i>Manajemen Tempat Laundry</a></li>
             @endif
-            <li><a class="nav-link" href="/tentangkami"><i class="fas fa-th-large"></i>Tentang Kami</a></li>
 
 
 
